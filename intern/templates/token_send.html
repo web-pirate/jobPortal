@@ -1,0 +1,222 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<main class="main-content">
+  <!--== Start Page Header Area Wrapper ==-->
+  <div
+    class="page-header-area sec-overlay sec-overlay-black"
+    data-bg-img="{% static 'img/photos/bg2.webp' %}"
+  >
+    <div class="container pt--0 pb--0">
+      <div class="row">
+        <div class="col-12">
+          <div class="page-header-content">
+            <h2 class="title">Email Send Successfully</h2>
+            <nav class="breadcrumb-area">
+              <ul class="breadcrumb justify-content-center">
+                <li><a href="index.html">Home</a></li>
+                <li class="breadcrumb-sep">//</li>
+                <li>Email Sent Successfully</li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--== End Page Header Area Wrapper ==-->
+
+  <!--== Start About Area Wrapper ==-->
+  <section class="about-area about-default-wrapper">
+    <div class="container">
+      <div class="about-item">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="about-thumb"
+              data-aos="fade-down"
+              data-aos-duration="1000"
+            >
+              <img src="{% static 'img/about/1.webp' %}" alt="Image-HasTech" />
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="about-thumb about-thumb-two"
+              data-aos="fade-down"
+              data-aos-duration="1200"
+            >
+              <img src="{% static 'img/about/2.webp' %}" alt="Image-HasTech" />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div
+              class="about-content"
+              data-aos="fade-down"
+              data-aos-duration="1000"
+            >
+              <h4 class="sub-title">// About Finate</h4>
+              <h3 class="title">
+                Registration Successfully! <br />
+                Please Verify your E-mail...
+              </h3>
+              <p class="desc">
+                It is a long established fact that a reader will be distracted
+                the readable content of a page when looking at its layout. The
+                point of using is that has more-or-less normal a distribution of
+                letters, as opposed to using 'Content publishing packages web
+                page editors.
+              </p>
+              <div
+                class="member-join-content"
+                data-aos="fade-right"
+                data-aos-duration="1200"
+              >
+                <div class="member-join-thumb">
+                  <ul>
+                    <li>
+                      <a href="candidate-details.html">
+                        <img
+                          src="{% static 'img/about/member1.webp' %}"
+                          width="50"
+                          height="50"
+                          alt="Image-HasTech"
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-details.html">
+                        <img
+                          src="{% static 'img/about/member2.webp' %}"
+                          width="50"
+                          height="50"
+                          alt="Image-HasTech"
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-details.html">
+                        <img
+                          src="{% static 'img/about/member3.webp' %}"
+                          width="50"
+                          height="50"
+                          alt="Image-HasTech"
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-details.html">
+                        <img
+                          src="{% static 'img/about/member4.webp' %}"
+                          width="50"
+                          height="50"
+                          alt="Image-HasTech"
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-details.html">
+                        <img
+                          src="{% static 'img/about/member4.webp' %}"
+                          width="50"
+                          height="50"
+                          alt="Image-HasTech"
+                        />
+                        <span>+</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="member-join-btn">
+                  <a class="join-now-btn" href="{% url 'login' %}"
+                    ><span>+</span> Login Now</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--== End About Area Wrapper ==-->
+
+  <!--== Start Funfact Area Wrapper ==-->
+  <section class="funfact-area bg-color-gray">
+    <div class="container">
+      <div class="row no-gutter">
+        <div class="col-12">
+          <div class="funfact-content-wrap">
+            <div class="funfact-col">
+              <!--== Start Funfact Item ==-->
+              <div class="funfact-item" data-aos="fade-down">
+                <h2 class="counter-number">
+                  <span class="counter" data-counterup-delay="50">5689</span>
+                </h2>
+                <h6 class="counter-title">Total Jobs</h6>
+              </div>
+              <!--== End Funfact Item ==-->
+            </div>
+            <div class="funfact-col">
+              <!--== Start Funfact Item ==-->
+              <div
+                class="funfact-item"
+                data-aos="fade-down"
+                data-aos-duration="1500"
+              >
+                <h2 class="counter-number">
+                  <span class="counter" data-counterup-delay="50">8567</span>
+                </h2>
+                <h6 class="counter-title">Candidates</h6>
+              </div>
+              <!--== End Funfact Item ==-->
+            </div>
+            <div class="funfact-col">
+              <!--== Start Funfact Item ==-->
+              <div
+                class="funfact-item"
+                data-aos="fade-down"
+                data-aos-duration="1700"
+              >
+                <h2 class="counter-number">
+                  <span class="counter" data-counterup-delay="50">7457</span>
+                </h2>
+                <h6 class="counter-title">Resume</h6>
+              </div>
+              <!--== End Funfact Item ==-->
+            </div>
+            <div class="funfact-col">
+              <!--== Start Funfact Item ==-->
+              <div
+                class="funfact-item"
+                data-aos="fade-down"
+                data-aos-duration="1900"
+              >
+                <h2 class="counter-number">
+                  <span class="counter" data-counterup-delay="50">6483</span>
+                </h2>
+                <h6 class="counter-title">Compnay’s</h6>
+              </div>
+              <!--== End Funfact Item ==-->
+            </div>
+            <div class="funfact-col">
+              <!--== Start Funfact Item ==-->
+              <div
+                class="funfact-item"
+                data-aos="fade-down"
+                data-aos-duration="2200"
+              >
+                <h2 class="counter-number">
+                  <span class="counter" data-counterup-delay="50">358</span>
+                </h2>
+                <h6 class="counter-title">Country’s</h6>
+              </div>
+              <!--== End Funfact Item ==-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--== End Funfact Area Wrapper ==-->
+</main>
+{% endblock content %}

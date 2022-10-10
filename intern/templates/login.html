@@ -34,6 +34,9 @@
               <div class="form-title">
                 <h4 class="title">Sign In</h4>
               </div>
+              {% if messages %} {% for message in messages %}
+              <div class="alert alert-success" role="alert">{{message}}</div>
+              {% endfor %} {% endif %}
               <form action="#" method="post">
                 {% csrf_token %}
                 <div class="row">
@@ -42,7 +45,7 @@
                       <input
                         class="form-control"
                         type="text"
-                        placeholder="Email/Username"
+                        placeholder="Email/Username {{username}} "
                         name="username"
                       />
                     </div>
@@ -87,7 +90,7 @@
               <div class="login-register-form-info">
                 <p>
                   Don't you have an account?
-                  <a href="registration.html">Register</a>
+                  <a href="{% url 'register' %}">Register</a>
                 </p>
               </div>
             </div>

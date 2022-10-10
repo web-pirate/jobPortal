@@ -1,6 +1,12 @@
+import imp
+import profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from .models import *
+import uuid
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -12,16 +18,33 @@ def home(request):
 def register(request):
     if request.method == "POST":
         uname = request.POST.get('uname')
-        print(uname)
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
         email = request.POST.get('email')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
-        new_user = User.objects.create_user(
-            username=uname, first_name=fname, last_name=lname, email=email, password=password)
-        new_user.save()
-        return redirect('home')
+
+        try:
+
+            if User.objects.filter(username=uname).first():
+                messages.success(request, 'Username Already Taken.')
+                return redirect(register)
+            if User.objects.filter(email=email).first():
+                messages.success(request, 'Email Already Taken.')
+                return redirect(register)
+
+            if password == password2:
+                new_user = User.objects.create_user(
+                    username=uname, first_name=fname, last_name=lname, email=email, password=password)
+                new_user.save()
+
+                auth_token = str(uuid.uuid4())
+                profile_obj = Profile(user=new_user, auth_token=auth_token)
+                profile_obj.save()
+                send_email_after_registration(email, auth_token)
+                return redirect('token')
+        except Exception as e:
+            print(e)
 
     else:
         return render(request, 'register.html')
@@ -32,12 +55,25 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = auth.authenticate(username=username, password=password)
-        print(user)
+
+        user_obj = User.objects.filter(username=username).first()
+        profile_obj = Profile.objects.filter(user=user_obj).first()
+
+        if not profile_obj.is_verified:
+            messages.add_message(request, messages.INFO,
+                                 "Profile Not Verified check your mail")
+            return redirect('login')
 
         if user is not None:
             auth.login(request, user)
             messages.add_message(request, messages.INFO, "Login Successfull")
             return render(request, 'home.html', {'username': username})
+        else:
+            messages.add_message(request, messages.WARNING, "Wrong Password")
+            # currentuser = request.user
+            # print(currentuser)
+            return redirect('login')
+
     else:
         return render(request, 'login.html')
 
@@ -49,3 +85,44 @@ def logout(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+
+def success(request):
+    return render(request, 'success.html')
+
+
+def token_send(request):
+    return render(request, 'token_send.html')
+
+
+def verify(request, auth_token):
+    try:
+        profile_obj = Profile.objects.filter(auth_token=auth_token).first()
+        if profile_obj.is_verified:
+            messages.add_message(request, messages.INFO,
+                                 "E-mail is already Verified!")
+            return redirect('login')
+        if profile_obj:
+            profile_obj.is_verified = True
+            profile_obj.save()
+            messages.add_message(request, messages.INFO,
+                                 "E-mail Verified Successfull")
+            return redirect('/')
+        else:
+            return redirect('error')
+
+    except Exception as e:
+        print(e)
+
+
+def error(request):
+    print('ERROR')
+    return render(request, 'contact.html')
+
+
+def send_email_after_registration(email, token):
+    subject = "Your accounts need to be verified!!"
+    message = f'Hi click the link to verify your account http://127.0.0.1:8000/verify/{token}'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
