@@ -1,3 +1,4 @@
+from cgitb import html, text
 import imp
 import profile
 from django.shortcuts import render, redirect
@@ -8,7 +9,11 @@ import uuid
 from django.conf import settings
 from django.core.mail import send_mail
 
-# Create your views here.
+# # libraries for email with html_template
+
+# from django.core.mail import EmailMultiAlternatives
+# from django.template.loader import render_to_string
+# from django.utils.html import strip_tags
 
 
 def home(request):
@@ -44,7 +49,8 @@ def register(request):
                 send_email_after_registration(email, auth_token)
                 return redirect('token')
         except Exception as e:
-            print(e)
+            print("Daily Limit Excced")
+            return redirect('register')
 
     else:
         return render(request, 'register.html')
@@ -84,6 +90,7 @@ def logout(request):
 
 
 def contact(request):
+    # models already made
     return render(request, 'contact.html')
 
 
@@ -107,7 +114,7 @@ def verify(request, auth_token):
             profile_obj.save()
             messages.add_message(request, messages.INFO,
                                  "E-mail Verified Successfull")
-            return redirect('/')
+            return redirect('success')
         else:
             return redirect('error')
 
@@ -120,9 +127,32 @@ def error(request):
     return render(request, 'contact.html')
 
 
+def email_template(request, token):
+    return render(request, 'email.html', {'token': token})
+
+
 def send_email_after_registration(email, token):
     subject = "Your accounts need to be verified!!"
     message = f'Hi click the link to verify your account http://127.0.0.1:8000/verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
+
+    # # html template in email
+    # html_content = render_to_string('email.html')
+    # text_content = strip_tags(html_content)
+    # message = text_content
+    # email_html = EmailMultiAlternatives(
+    #     subject, message, email_from, recipient_list)
+    # email_html.attach_alternative(html_content, "text/html")
+    # email_html.send()
+
+# Company Profile
+
+
+def company_profile(request):
+    return render(request, 'company_profile.html')
+
+
+def company_registration(request):
+    return render(request, 'company_registration.html')

@@ -92,6 +92,18 @@
                               ><span>Job Details</span></a
                             >
                           </li>
+                          <li>
+                            <a href="{% url 'company_profile' %}"
+                              ><span>Company Profile</span></a
+                            >
+                          </li>
+                          {% if user.is_authenticated %}
+                          <li>
+                            <a href="{% url 'company_registration' %}"
+                              ><span>Company Registration</span></a
+                            >
+                          </li>
+                          {% endif %}
                         </ul>
                       </li>
                       <li>

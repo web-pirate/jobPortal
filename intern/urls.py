@@ -14,6 +14,14 @@ urlpatterns = [
     path('token/', views.token_send, name='token'),
     path('success/', views.success, name='success'),
     path('verify/<auth_token>', views.verify, name='verify'),
-    path('error', views.error, name='error'),
+    path('error/', views.error, name='error'),
+    path('email/', views.email_template, name='email_template'),
+
+    # Company Associated Pages
+    path('company_profile/', views.company_profile, name='company_profile'),
+    path('company_registration/', views.company_registration,
+         name='company_registration'),
+
+
 
 ]
