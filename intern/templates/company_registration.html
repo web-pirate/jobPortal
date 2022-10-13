@@ -79,18 +79,31 @@
                       role="tabpanel"
                       aria-labelledby="candidate-tab"
                     >
-                      <form method="post">
+
+                    <div class="image text-center mb-2" >
+                      <img src="{% static 'img/companies/1.webp' %}" id="company_profile_img" alt="company_profile" style="height:150px; width:auto"  />
+                    </div>
+
+                    <script>
+                      function showPreview(event){
+                        if(event.target.files.length > 0){
+                          var src = URL.createObjectURL(event.target.files[0]);
+                          var preview = document.getElementById("company_profile_img");
+                          preview.src = src;
+                          
+                        }
+                      }
+                    </script>
+                    <form action="#" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row">
-
                           <div class="col-12">
                             <div class="form-group">
                               <input
                                 class="form-control"
                                 type="text"
-                                placeholder="Username"
-                                name='uname'
-                                required
+                                placeholder="Company Name"
+                                name='cname'
                               />
                             </div>
                           </div>
@@ -99,24 +112,13 @@
                             <div class="form-group">
                               <input
                                 class="form-control"
-                                type="text"
-                                placeholder="First Name"
-                                name='fname'
+                                type="file"
+                                placeholder="Upload"
+                                name='pro_img'
+                                accept=".png, .jpg, .jpeg"
                               />
                             </div>
                           </div>
-
-                          <div class="col-12">
-                            <div class="form-group">
-                              <input
-                                class="form-control"
-                                type="text"
-                                placeholder="Last Name"
-                                name='lname'
-                              />
-                            </div>
-                          </div>
-
 
                           <div class="col-12">
                             <div class="form-group">
@@ -124,31 +126,49 @@
                                 class="form-control"
                                 type="email"
                                 placeholder="Email"
-                                name='email'
+                                name='cemail'
                                 required
                               />
                             </div>
                           </div>
+                          
                           <div class="col-12">
                             <div class="form-group">
                               <input
                                 class="form-control"
-                                type="password"
-                                placeholder="Password"
-                                name="password"
+                                type="tel"
+                                placeholder="Contact No."
+                                name='cphone'
+                                required
                               />
                             </div>
                           </div>
+
                           <div class="col-12">
                             <div class="form-group">
                               <input
                                 class="form-control"
-                                type="password"
-                                placeholder="Confirm Password"
-                                name='password2'
+                                type="text"
+                                placeholder="Location"
+                                name='clocation'
+                                required
                               />
                             </div>
                           </div>
+
+                          <div class="col-12">
+                            <div class="form-group">
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Description"
+                                name='cdescription'
+                                required
+                              />
+                            </div>
+                          </div>
+
+
                           <div class="col-12">
                             <div class="form-group">
                               <div class="remember-forgot-info">

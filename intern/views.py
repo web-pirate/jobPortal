@@ -1,6 +1,3 @@
-from cgitb import html, text
-import imp
-import profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -8,6 +5,7 @@ from .models import *
 import uuid
 from django.conf import settings
 from django.core.mail import send_mail
+
 
 # # libraries for email with html_template
 
@@ -155,4 +153,23 @@ def company_profile(request):
 
 
 def company_registration(request):
-    return render(request, 'company_registration.html')
+    user_obj = request.user
+    print(user_obj)
+    if request.method == "POST":
+        cname = request.POST.get('cname')
+        cimage = request.POST.get('pro_img')
+        print(cimage)
+        cemail = request.POST.get('cemail')
+        cphone = request.POST.get('cphone')
+        clocation = request.POST.get('clocation')
+        cdescription = request.POST.get('cdescription')
+
+        user_obj = request.user
+        find_user = User.objects.filter(username=user_obj).first()
+        company_profile_obj = Company_profile(
+            user=find_user, cname=cname, cimage=cimage, cemail=cemail, clocation=clocation, cphone=cphone, cdescription=cdescription)
+        company_profile_obj.save()
+        return redirect('home')
+    else:
+        print("Registration failed")
+        return render(request, 'company_registration.html')
