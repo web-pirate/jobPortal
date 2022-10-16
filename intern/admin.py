@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Company_profile
+from .models import *
 
 
 class DataAdmin(admin.ModelAdmin):
@@ -8,4 +8,5 @@ class DataAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile)
+admin.site.register(Newsletters)
 admin.site.register(Company_profile, DataAdmin)

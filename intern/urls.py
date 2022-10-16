@@ -21,6 +21,12 @@ urlpatterns = [
     path('company_profile/', views.company_profile, name='company_profile'),
     path('company_registration/', views.company_registration,
          name='company_registration'),
+    path('edit_company/<company_obj>', views.edit_company, name='edit_company'),
+
+
+    # Newsletter email collection
+    # path('newsletter/', views.newsletter, name='newsletter'),
+
 
 
 

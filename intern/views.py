@@ -15,6 +15,19 @@ from django.core.mail import send_mail
 
 
 def home(request):
+    # try:
+    #     if request.method == 'POST':
+    #         nemail = request.POST.get('news_email')
+    #         print(nemail)
+    #         new_obj = Newsletters(nemail=nemail)
+    #         new_obj.save()
+    #         return redirect('home')
+    #     else:
+    #         return render(request, 'home.html')
+
+    # except Exception as e:
+    #     print(e)
+    #     return redirect('home')
     return render(request, 'home.html')
 
 
@@ -148,28 +161,60 @@ def send_email_after_registration(email, token):
 # Company Profile
 
 
+# @login_required(login_url="login")
 def company_profile(request):
-    return render(request, 'company_profile.html')
+    current_user = request.user
+    company_obj = Company_profile.objects.filter(user=current_user).first()
+    return render(request, 'company_profile.html', {'company': company_obj})
 
 
 def company_registration(request):
     user_obj = request.user
-    print(user_obj)
-    if request.method == "POST":
+    company_profile_obj = Company_profile.objects.filter(user=user_obj).first()
+    if company_profile_obj:
+        messages.add_message(request, messages.INFO,
+                             f"{user_obj}, your Company is already exist.")
+        return redirect('company_profile')
+    else:
+        print(user_obj)
+        if request.method == "POST":
+            cname = request.POST.get('cname')
+            cimage = request.POST.get('pro_img')
+            print(cimage)
+            cemail = request.POST.get('cemail')
+            cphone = request.POST.get('cphone')
+            clocation = request.POST.get('clocation')
+            cdescription = request.POST.get('cdescription')
+
+            user_obj = request.user
+            find_user = User.objects.filter(username=user_obj).first()
+            company_profile_obj = Company_profile(
+                user=find_user, cname=cname, cimage=cimage, cemail=cemail, clocation=clocation, cphone=cphone, cdescription=cdescription)
+            company_profile_obj.save()
+            return redirect('home')
+        else:
+            print("Registration failed")
+            return render(request, 'company_registration.html')
+
+
+def edit_company(request, company_obj):
+    user_obj = request.user
+    company_obj = Company_profile.objects.filter(user=user_obj).first()
+    if request.method == "POST" and company_obj:
         cname = request.POST.get('cname')
         cimage = request.POST.get('pro_img')
-        print(cimage)
         cemail = request.POST.get('cemail')
         cphone = request.POST.get('cphone')
         clocation = request.POST.get('clocation')
         cdescription = request.POST.get('cdescription')
+        created_at = company_obj.created_at
 
         user_obj = request.user
         find_user = User.objects.filter(username=user_obj).first()
-        company_profile_obj = Company_profile(
-            user=find_user, cname=cname, cimage=cimage, cemail=cemail, clocation=clocation, cphone=cphone, cdescription=cdescription)
+        company_profile_obj = Company_profile(id=company_obj.id,
+                                              user=find_user, cname=cname, cimage=cimage, cemail=cemail, clocation=clocation, cphone=cphone, cdescription=cdescription,
+                                              created_at=created_at)
         company_profile_obj.save()
-        return redirect('home')
+        return redirect('company_profile')
     else:
-        print("Registration failed")
-        return render(request, 'company_registration.html')
+        return render(request, 'edit_company.html', {'company': company_obj})

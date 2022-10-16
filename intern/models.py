@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -32,6 +31,10 @@ class Company_profile(models.Model):
     clocation = models.CharField(max_length=1000)
     cphone = models.IntegerField(null=True, blank=False)
     cimage = models.ImageField(
-         blank=False, upload_to='cprofile_img')
-    cdescription = RichTextField()
+        blank=False, upload_to='cprofile_img')
+    cdescription = models.CharField(max_length=5000)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Newsletters(models.Model):
+    nemail = models.EmailField(max_length=100)
