@@ -84,6 +84,7 @@ def login(request):
                 auth.login(request, user)
                 messages.add_message(
                     request, messages.INFO, "Login Successfull")
+                return redirect('home', {'username': username})
                 return render(request, 'home.html', {'username': username})
             else:
                 messages.add_message(
@@ -145,7 +146,7 @@ def email_template(request, token):
 
 def send_email_after_registration(email, token):
     subject = "Your accounts need to be verified!!"
-    message = f'Hi click the link to verify your account https://goodjobportal.herokuapp.com/verify/{token}'
+    message = f'Hi click the link to verify your account http://127.0.0.1:8000//verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
@@ -166,7 +167,8 @@ def send_email_after_registration(email, token):
 def company_profile(request):
     current_user = request.user
     company_obj = Company_profile.objects.filter(user=current_user).first()
-    return render(request, 'company_profile.html', {'company': company_obj})
+    job_obj = Job.objects.filter(cname=company_obj).all()
+    return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
 
 
 def company_registration(request):
@@ -219,3 +221,7 @@ def edit_company(request, company_obj):
         return redirect('company_profile')
     else:
         return render(request, 'edit_company.html', {'company': company_obj})
+
+
+# def job_details(company_obj):
+#     job_obj = Job.objects.filter(cname=company_obj).all()

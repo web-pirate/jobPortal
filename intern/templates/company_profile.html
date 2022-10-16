@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-12">
           <div class="page-header-content">
-            <h2 class="title">Conmpany's Profile</h2>
+            <h2 class="title">{{company.cname}}</h2>
             <nav class="breadcrumb-area">
               <ul class="breadcrumb justify-content-center">
                 <li><a href="{% url 'home' %}">Home</a></li>
@@ -26,7 +26,7 @@
   <!--== End Page Header Area Wrapper ==-->
 
   {% if messages %} {% for message in messages %}
-    <div class="alert alert-success text-center" role="alert">{{message}}</div>
+  <div class="alert alert-success text-center" role="alert">{{message}}</div>
   {% endfor %} {% endif %}
 
   <div class="container" style="margin-top: -60px">
@@ -45,11 +45,16 @@
             <div class="content">
               <h4 class="title">{{company.cname}}</h4>
               <ul class="info-list">
-                <li><i class="icofont-location-pin"></i>{{company.clocation}}</li>
+                <li>
+                  <i class="icofont-location-pin"></i>{{company.clocation}}
+                </li>
                 <li><i class="icofont-phone"></i> {{company.cphone}}</li>
               </ul>
-              <a href="{% url 'edit_company' company.cname %}"> 
-              <button type="button" class="btn-theme"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Edit</button></a>
+              <a href="{% url 'edit_company' company.cname %}">
+                <button type="button" class="btn-theme">
+                  <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Edit
+                </button></a
+              >
               <button type="button" class="btn-theme btn-white">
                 Add Review
               </button>
@@ -87,47 +92,7 @@
         >
           <div class="container">
             <div class="row">
-              <div class="col-md-6 col-lg-4">
-                <!--== Start Recent Job Item ==-->
-                <div class="recent-job-item recent-job-style2-item">
-                  <div class="company-info">
-                    <div class="logo">
-                      <a href="company-details.html"
-                        ><img
-                          src="{% static 'img/companies/1.webp' %}"
-                          width="75"
-                          height="75"
-                          alt="Image-HasTech"
-                      /></a>
-                    </div>
-                    <div class="content">
-                      <h4 class="name">
-                        <a href="company-details.html">Darkento Ltd.</a>
-                      </h4>
-                      <p class="address">New York, USA</p>
-                    </div>
-                  </div>
-                  <div class="main-content">
-                    <h3 class="title">
-                      <a href="job-details.html">Front-end Developer</a>
-                    </h3>
-                    <h5 class="work-type">Full-time</h5>
-                    <p class="desc">
-                      CSS3, HTML5, Javascript, Bootstrap, Jquery
-                    </p>
-                  </div>
-                  <div class="recent-job-info">
-                    <div class="salary">
-                      <h4>$5000</h4>
-                      <p>/monthly</p>
-                    </div>
-                    <a class="btn-theme btn-sm" href="job-details.html"
-                      >Apply Now</a
-                    >
-                  </div>
-                </div>
-                <!--== End Recent Job Item ==-->
-              </div>
+              {% for emp in job %}
               <div class="col-md-6 col-lg-4">
                 <!--== Start Recent Job Item ==-->
                 <div class="recent-job-item recent-job-style2-item">
@@ -143,17 +108,19 @@
                     </div>
                     <div class="content">
                       <h4 class="name">
-                        <a href="company-details.html">Inspire Fitness Co.</a>
+                        <a href="company-details.html"
+                          >{{emp.cname|truncatechars:25}}</a
+                        >
                       </h4>
-                      <p class="address">New York, USA</p>
+                      <p class="address">{{company.clocation}}</p>
                     </div>
                   </div>
                   <div class="main-content">
                     <h3 class="title">
-                      <a href="job-details.html">Senior UI Designer</a>
+                      <a href="job-details.html">{{emp.job_position}}</a>
                     </h3>
                     <h5 class="work-type" data-text-color="#ff7e00">
-                      Part-time
+                      {{emp.job_type}}
                     </h5>
                     <p class="desc">
                       CSS3, HTML5, Javascript, Bootstrap, Jquery
@@ -161,7 +128,7 @@
                   </div>
                   <div class="recent-job-info">
                     <div class="salary">
-                      <h4>$5000</h4>
+                      <h4>${{emp.salary}}</h4>
                       <p>/monthly</p>
                     </div>
                     <a class="btn-theme btn-sm" href="job-details.html"
@@ -171,6 +138,7 @@
                 </div>
                 <!--== End Recent Job Item ==-->
               </div>
+              {% endfor %}
               <div class="col-md-6 col-lg-4">
                 <!--== Start Recent Job Item ==-->
                 <div class="recent-job-item recent-job-style2-item">
@@ -219,7 +187,11 @@
                   <nav>
                     <ul class="page-numbers d-inline-flex">
                       <li>
-                        <a class="page-number active" href="job.html">1</a>
+                        <a
+                          class="page-number active"
+                          href="{% url 'company_profile' %}"
+                          >1</a
+                        >
                       </li>
                       <li>
                         <a class="page-number" href="job.html">2</a>
