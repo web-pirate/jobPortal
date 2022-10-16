@@ -75,21 +75,22 @@ def login(request):
 
         user_obj = User.objects.filter(username=username).first()
         profile_obj = Profile.objects.filter(user=user_obj).first()
-
         if not profile_obj.is_verified:
             messages.add_message(request, messages.INFO,
                                  "Profile Not Verified check your mail")
             return redirect('login')
-
-        if user is not None:
-            auth.login(request, user)
-            messages.add_message(request, messages.INFO, "Login Successfull")
-            return render(request, 'home.html', {'username': username})
         else:
-            messages.add_message(request, messages.WARNING, "Wrong Password")
-            # currentuser = request.user
-            # print(currentuser)
-            return redirect('login')
+            if user is not None:
+                auth.login(request, user)
+                messages.add_message(
+                    request, messages.INFO, "Login Successfull")
+                return render(request, 'home.html', {'username': username})
+            else:
+                messages.add_message(
+                    request, messages.WARNING, "Wrong Password")
+                # currentuser = request.user
+                # print(currentuser)
+                return redirect('login')
 
     else:
         return render(request, 'login.html')
@@ -144,7 +145,7 @@ def email_template(request, token):
 
 def send_email_after_registration(email, token):
     subject = "Your accounts need to be verified!!"
-    message = f'Hi click the link to verify your account http://127.0.0.1:8000/verify/{token}'
+    message = f'Hi click the link to verify your account https://goodjobportal.herokuapp.com/verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
