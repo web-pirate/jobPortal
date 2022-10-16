@@ -1,1 +1,1 @@
-web gunicorn jobs.wsgi.application --log-file -
+web: gunicorn jobs.wsgi:application --log-file - --log-level debug
