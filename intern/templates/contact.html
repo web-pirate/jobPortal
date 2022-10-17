@@ -43,8 +43,13 @@
               <div class="info">
                 <h5 class="title">Call Us:</h5>
                 <p>
-                  <a href="tel://568975468">(00) 568 975 468</a><br />
-                  <a href="tel://+88465748937">+88 465 748 937</a>
+                  {% if user.is_authenticated %}
+                  <a href="tel://568975468">(+91) 7000169166</a><br />
+                  {% else %}
+                  <a href="tel://568975468">(+91) 7000******</a><br />
+                  {% endif %}
+
+                  <a href="tel://+88465748937">(+91) 9234569870</a>
                 </p>
               </div>
             </div>
@@ -78,13 +83,19 @@
               <div class="info">
                 <h5 class="title">Address:</h5>
                 <p>
-                  Sunset Beach, North <br />
-                  Carolina(NC), 28468
+                  Vijay Nagar square <br />
+                  Indore(MP), 452010
                 </p>
               </div>
             </div>
           </div>
         </div>
+
+        {% comment %} {% if messages %} {% for message in messages %}
+        <div class="container">
+          <div class="alert alert-success" role="alert">{{message}}</div>
+        </div>
+        {% endfor %} {% endif %} {% endcomment %}
         <div class="col-lg-6">
           <!--== Start Contact Form ==-->
           <div class="contact-form">
@@ -126,7 +137,6 @@
                   <div class="form-group">
                     <textarea
                       class="form-control"
-                      name="con_message"
                       placeholder="Message"
                       name="message"
                     ></textarea>
@@ -152,7 +162,13 @@
         <div class="col-lg-6">
           <div class="map-area">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1912972.6636523942!2d144.28416561146162!3d-38.05127959850456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sbd!4v1634028820404!5m2!1sen!2sbd"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1839.6958735226356!2d75.8946357582996!3d22.750838669794412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396302aa0cd59c5d%3A0x57ef6ab67c13ea2b!2sVijay%20Nagar%20Square%2C%20Vijay%20Nagar%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1665983134994!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>

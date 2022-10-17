@@ -1,3 +1,5 @@
+import email
+import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -5,7 +7,7 @@ from .models import *
 import uuid
 from django.conf import settings
 from django.core.mail import send_mail
-
+from django.views.decorators.csrf import csrf_exempt
 
 # # libraries for email with html_template
 
@@ -15,6 +17,7 @@ from django.core.mail import send_mail
 
 
 def home(request):
+    user_object = User.objects.all()
     # try:
     #     if request.method == 'POST':
     #         nemail = request.POST.get('news_email')
@@ -28,7 +31,8 @@ def home(request):
     # except Exception as e:
     #     print(e)
     #     return redirect('home')
-    return render(request, 'home.html')
+    print(user_object)
+    return render(request, 'home.html', {'user_obj': user_object})
 
 
 def register(request):
@@ -74,25 +78,27 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
 
         user_obj = User.objects.filter(username=username).first()
-        profile_obj = Profile.objects.filter(user=user_obj).first()
-        if not profile_obj.is_verified:
-            messages.add_message(request, messages.INFO,
-                                 "Profile Not Verified check your mail")
-            return redirect('login')
-        else:
-            if user is not None:
-                auth.login(request, user)
-                messages.add_message(
-                    request, messages.INFO, "Login Successfull")
-                return redirect('home', {'username': username})
-                return render(request, 'home.html', {'username': username})
-            else:
-                messages.add_message(
-                    request, messages.WARNING, "Wrong Password")
-                # currentuser = request.user
-                # print(currentuser)
+        if user_obj:
+            profile_obj = Profile.objects.filter(user=user_obj).first()
+            print(profile_obj)
+            if not profile_obj.is_verified:
+                messages.add_message(request, messages.INFO,
+                                     "Profile Not Verified check your mail")
                 return redirect('login')
-
+            else:
+                if user is not None:
+                    auth.login(request, user)
+                    messages.add_message(
+                        request, messages.INFO, "Login Successfull")
+                    return render(request, 'home.html', {'username': username})
+                else:
+                    messages.add_message(
+                        request, messages.WARNING, "Wrong Password")
+                    return redirect('login')
+        else:
+            messages.add_message(request, messages.WARNING,
+                                 "Please Register on Website.")
+            return redirect('login')
     else:
         return render(request, 'login.html')
 
@@ -102,9 +108,30 @@ def logout(request):
     return redirect('home')
 
 
+@csrf_exempt
 def contact(request):
+    current_obj = request.user
+    user_obj = User.objects.filter(username=current_obj).first()
+    try:
+        if request.method == 'POST':
+            name = request.POST.get('uname')
+            email = request.POST.get('uemail')
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
+
+            contact_obj = Contact(name=name, email=email,
+                                  subject=subject, message=message)
+            contact_obj.save()
+            print('contant send')
+            messages.add_message(
+                request, messages.SUCCESS, "Your message is recieved successfull!!")
+            print("message")
+            return redirect('contact')
+
+    except Exception as e:
+        print(e)
     # models already made
-    return render(request, 'contact.html')
+    return render(request, 'contact.html', {'user': user_obj})
 
 
 def success(request):
@@ -167,6 +194,7 @@ def send_email_after_registration(email, token):
 def company_profile(request):
     current_user = request.user
     company_obj = Company_profile.objects.filter(user=current_user).first()
+    print(company_obj.cimage)
     job_obj = Job.objects.filter(cname=company_obj).all()
     return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
 

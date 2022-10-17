@@ -1004,8 +1004,10 @@
               </div>
               <!--== End Team Item ==-->
             </div>
+            {% for i in user_obj %}
             <div class="col-sm-6 col-lg-4 col-xl-3">
               <!--== Start Team Item ==-->
+              
               <div class="team-item">
                 <div class="thumb">
                   <a href="candidate-details.html">
@@ -1019,7 +1021,7 @@
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="candidate-details.html">Valentine Anders</a>
+                    <a href="candidate-details.html">{{i.first_name}}</a>
                   </h4>
                   <h5 class="sub-title">UI/UX Designer</h5>
                   <div class="rating-box">
@@ -1048,99 +1050,12 @@
                   />
                 </div>
               </div>
+              
               <!--== End Team Item ==-->
             </div>
-            <div class="col-sm-6 col-lg-4 col-xl-3">
-              <!--== Start Team Item ==-->
-              <div class="team-item">
-                <div class="thumb">
-                  <a href="candidate-details.html">
-                    <img
-                      src="{% static 'img/team/3.webp' %}"
-                      width="160"
-                      height="160"
-                      alt="Image-HasTech"
-                    />
-                  </a>
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="candidate-details.html">Shakia Aguilera</a>
-                  </h4>
-                  <h5 class="sub-title">Web Designer</h5>
-                  <div class="rating-box">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <p class="desc">CSS3, HTML5, Javascript Bootstrap, Jquery</p>
-                  <a
-                    class="btn-theme btn-white btn-sm"
-                    href="candidate-details.html"
-                    >View Profile</a
-                  >
-                </div>
-                <div class="bookmark-icon">
-                  <img
-                    src="{% static 'img/icons/bookmark1.webp' %}"
-                    alt="Image-HasTech"
-                  />
-                </div>
-                <div class="bookmark-icon-hover">
-                  <img
-                    src="{% static 'img/icons/bookmark2.webp' %}"
-                    alt="Image-HasTech"
-                  />
-                </div>
-              </div>
-              <!--== End Team Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-4 col-xl-3">
-              <!--== Start Team Item ==-->
-              <div class="team-item">
-                <div class="thumb">
-                  <a href="candidate-details.html">
-                    <img
-                      src="{% static 'img/team/4.webp' %}"
-                      width="160"
-                      height="160"
-                      alt="Image-HasTech"
-                    />
-                  </a>
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="candidate-details.html">Assunta Manson</a>
-                  </h4>
-                  <h5 class="sub-title">App. Developer</h5>
-                  <div class="rating-box">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <p class="desc">CSS3, HTML5, Javascript Bootstrap, Jquery</p>
-                  <a
-                    class="btn-theme btn-white btn-sm"
-                    href="candidate-details.html"
-                    >View Profile</a
-                  >
-                </div>
-                <div class="bookmark-icon">
-                  <img
-                    src="{% static 'img/icons/bookmark1.webp' %}"
-                    alt="Image-HasTech"
-                  />
-                </div>
-                <div class="bookmark-icon-hover">
-                  <img
-                    src="{% static 'img/icons/bookmark2.webp' %}"
-                    alt="Image-HasTech"
-                  />
-                </div>
-              </div>
-              <!--== End Team Item ==-->
-            </div>
+            {% endfor %}
+            
+            
           </div>
         </div>
       </section>
