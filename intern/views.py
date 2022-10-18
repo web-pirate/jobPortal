@@ -32,7 +32,18 @@ def home(request):
     #     print(e)
     #     return redirect('home')
     print(user_object)
-    return render(request, 'home.html', {'user_obj': user_object})
+    job_order = Job.objects.all()
+    print(job_order)
+    count = 0
+    job_append = []
+    for i in job_order:
+        print(i)
+        job_add = job_append.append(i)
+        count = count + 1
+        if count == 3:
+            break
+    job_append.reverse()
+    return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
 
 
 def register(request):
@@ -89,7 +100,7 @@ def login(request):
                 if user is not None:
                     auth.login(request, user)
                     messages.add_message(
-                        request, messages.INFO, "Login Successfull")
+                        request, messages.INFO, "Login Successfull 1234")
                     return render(request, 'home.html', {'username': username})
                 else:
                     messages.add_message(
@@ -253,3 +264,12 @@ def edit_company(request, company_obj):
 
 # def job_details(company_obj):
 #     job_obj = Job.objects.filter(cname=company_obj).all()
+
+def user_list(request):
+    user_obj = User.objects.all()
+    return render(request, 'user_list.html', {"user_obj": user_obj})
+
+
+def user_view(request):
+    user_obj = User.objects.all()
+    return render(request, 'user_view.html', {"user_obj": user_obj})

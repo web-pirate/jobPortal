@@ -51,3 +51,8 @@ class Job(models.Model):
     job_description = models.CharField(max_length=1000, blank=False)
     job_experience = models.CharField(max_length=100, default="Fresher")
     job_type = models.CharField(max_length=100, default="Full-Time")
+    job_location = models.CharField(
+        max_length=100, default="Work From Home")
+
+    def __str__(self):
+        return self.cname.cname

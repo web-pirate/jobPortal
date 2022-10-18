@@ -48,7 +48,16 @@
                 <li>
                   <i class="icofont-location-pin"></i>{{company.clocation}}
                 </li>
+                {% if user.is_authenticated %}
                 <li><i class="icofont-phone"></i> {{company.cphone}}</li>
+                {% else %}
+                <a href=""
+                  ><li>
+                    <i class="{% url 'login' %}"></i>&nbsp;&nbsp;&nbsp;Contact
+                    Us
+                  </li></a
+                >
+                {% endif %}
               </ul>
               <a href="{% url 'edit_company' company.cname %}">
                 <button type="button" class="btn-theme">
