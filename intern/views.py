@@ -33,7 +33,6 @@ def home(request):
     #     return redirect('home')
     print(user_object)
     job_order = Job.objects.all()
-    print(job_order)
     count = 0
     job_append = []
     for i in job_order:
