@@ -32,17 +32,17 @@ def home(request):
     #     print(e)
     #     return redirect('home')
     print(user_object)
-    # job_order = Job.objects.all()
-    # count = 0
-    # job_append = []
-    # for i in job_order:
-    #     print(i)
-    #     job_add = job_append.append(i)
-    #     count = count + 1
-    #     if count == 3:
-    #         break
-    # job_append.reverse()
-    return render(request, 'home.html', {'user_obj': user_object})
+    job_order = Job.objects.all()
+    count = 0
+    job_append = []
+    for i in job_order:
+        print(i)
+        job_add = job_append.append(i)
+        count = count + 1
+        if count == 3:
+            break
+    job_append.reverse()
+    return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
 
 
 def register(request):
@@ -205,7 +205,7 @@ def company_profile(request):
     current_user = request.user
     company_obj = Company_profile.objects.filter(user=current_user).first()
     print(company_obj.cimage)
-    # job_obj = Job.objects.filter(cname=company_obj).all()
+    job_obj = Job.objects.filter(cname=company_obj).all()
     return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
 
 
