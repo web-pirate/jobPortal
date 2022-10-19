@@ -32,16 +32,16 @@ def home(request):
     #     print(e)
     #     return redirect('home')
     print(user_object)
-    job_order = Job.objects.all()
-    count = 0
-    job_append = []
-    for i in job_order:
-        print(i)
-        job_add = job_append.append(i)
-        count = count + 1
-        if count == 3:
-            break
-    job_append.reverse()
+    # job_order = Job.objects.all()
+    # count = 0
+    # job_append = []
+    # for i in job_order:
+    #     print(i)
+    #     job_add = job_append.append(i)
+    #     count = count + 1
+    #     if count == 3:
+    #         break
+    # job_append.reverse()
     return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
 
 
