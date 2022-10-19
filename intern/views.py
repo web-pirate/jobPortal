@@ -205,7 +205,7 @@ def company_profile(request):
     current_user = request.user
     company_obj = Company_profile.objects.filter(user=current_user).first()
     print(company_obj.cimage)
-    job_obj = Job.objects.filter(cname=company_obj).all()
+    # job_obj = Job.objects.filter(cname=company_obj).all()
     return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
 
 
