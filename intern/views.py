@@ -42,7 +42,7 @@ def home(request):
     #     if count == 3:
     #         break
     # job_append.reverse()
-    return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
+    return render(request, 'home.html', {'user_obj': user_object})
 
 
 def register(request):
