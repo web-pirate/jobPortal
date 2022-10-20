@@ -60,12 +60,12 @@
                     <a href={% url 'home' %}>
                       <img
                         class="logo-main"
-                        src="{% static 'img/logo-light.webp' %}"
+                        src="{% static 'img/logo-light.png' %}"
                         alt="Logo"
                       />
                       <img
                         class="logo-light"
-                        src="{% static 'img/logo-light.webp' %}"
+                        src="{% static 'img/logo-light.png' %}"
                         alt="Logo"
                       />
                     </a>
@@ -114,7 +114,7 @@
                             <a href="{% url 'user_list' %}"><span>Candidates</span></a>
                           </li>
                           <li>
-                            <a href="{% url 'user_view' %}"
+                            <a href="{% url 'user_view' user.username %}"
                               ><span>Candidate Details</span></a
                             >
                           </li>
@@ -247,7 +247,7 @@
                     <a href="{% url 'home' %}">
                       <img
                         class="logo-main"
-                        src="{% static 'img/logo-light-theme' %}.webp"
+                        src="{% static 'img/logo-light-theme' %}.png"
                         alt="Logo"
                       />
                     </a>

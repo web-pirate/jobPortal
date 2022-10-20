@@ -101,7 +101,7 @@
             <div class="col-12">
               <div class="play-video-btn">
                 <a
-                  href="#"
+                  href= "{% static 'img/logo-light.png' %}"
                   class="video-popup"
                 >
                   <img
@@ -681,7 +681,7 @@
                   <p class="desc">CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                   <a
                     class="btn-theme btn-white btn-sm"
-                    href="candidate-details.html"
+                    href="{% url 'home' %}"
                     >View Profile</a
                   >
                 </div>
@@ -729,7 +729,7 @@
                   <p class="desc">CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                   <a
                     class="btn-theme btn-white btn-sm"
-                    href="candidate-details.html"
+                    href="{% url 'user_view' i.username %}"
                     >View Profile</a
                   >
                 </div>

@@ -33,16 +33,19 @@ def home(request):
     #     return redirect('home')
     print(user_object)
     job_order = Job.objects.all()
-    count = 0
-    job_append = []
-    for i in job_order:
-        print(i)
-        job_add = job_append.append(i)
-        count = count + 1
-        if count == 3:
-            break
-    job_append.reverse()
-    return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
+    if job_order is not None:
+        count = 0
+        job_append = []
+        for i in job_order:
+            print(i)
+            job_add = job_append.append(i)
+            count = count + 1
+            if count == 3:
+                break
+        job_append.reverse()
+        return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
+    else:
+        return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
 
 
 def register(request):
@@ -269,6 +272,6 @@ def user_list(request):
     return render(request, 'user_list.html', {"user_obj": user_obj})
 
 
-def user_view(request):
-    user_obj = User.objects.all()
+def user_view(request, pk):
+    user_obj = User.objects.filter(username=pk).first()
     return render(request, 'user_view.html', {"user_obj": user_obj})

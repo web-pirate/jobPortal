@@ -27,7 +27,7 @@ urlpatterns = [
 
     # User Associated Pages
     path('user_list/', views.user_list, name='user_list'),
-    path('user_view/', views.user_view, name='user_view'),
+    path('user_view/<pk>', views.user_view, name='user_view'),
 
 
 
