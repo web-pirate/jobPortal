@@ -29,6 +29,8 @@ urlpatterns = [
     path('user_list/', views.user_list, name='user_list'),
     path('user_view/<pk>', views.user_view, name='user_view'),
 
+    # Job Associated Pages
+    path('remove_job/<job_id>', views.remove_job, name='remove_job'),
 
 
 

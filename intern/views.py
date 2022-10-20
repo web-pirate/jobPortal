@@ -1,5 +1,3 @@
-import email
-import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -206,10 +204,13 @@ def send_email_after_registration(email, token):
 # @login_required(login_url="login")
 def company_profile(request):
     current_user = request.user
-    company_obj = Company_profile.objects.filter(user=current_user).first()
-    print(company_obj.cimage)
-    job_obj = Job.objects.filter(cname=company_obj).all()
-    return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
+    if current_user:
+        company_obj = Company_profile.objects.filter(user=current_user).first()
+        print(company_obj.cimage)
+        job_obj = Job.objects.filter(cname=company_obj).all()
+        return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
+    else:
+        return render(request, 'company_profile.html')
 
 
 def company_registration(request):
@@ -275,3 +276,17 @@ def user_list(request):
 def user_view(request, pk):
     user_obj = User.objects.filter(username=pk).first()
     return render(request, 'user_view.html', {"user_obj": user_obj})
+
+
+def remove_job(request, job_id):
+    owner = request.user
+    com_detail = Company_profile.objects.filter(user=owner).first()
+    print(com_detail)
+    job_obj = Job.objects.filter(id=job_id).first()
+    if com_detail:
+        print('if')
+        job_obj.delete()
+        return redirect('home')
+    else:
+        print(f'{job_obj.job_position} is not deleted!!!')
+        return redirect('company_profile')

@@ -64,9 +64,15 @@
                   <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Edit
                 </button></a
               >
+              {% if user.is_authenticated %}
+              <button type="button" class="btn-theme btn-white">
+                Create Job
+              </button>
+              {% else %}
               <button type="button" class="btn-theme btn-white">
                 Add Review
               </button>
+              {% endif %}
             </div>
           </div>
           <div class="employers-counter">
@@ -140,8 +146,10 @@
                       <h4>${{emp.salary}}</h4>
                       <p>/monthly</p>
                     </div>
-                    <a class="btn-theme btn-sm" href="job-details.html"
-                      >Apply Now</a
+                    <a
+                      class="btn-theme btn-sm"
+                      href="{% url 'remove_job' emp.id %}"
+                      >Delete Now</a
                     >
                   </div>
                 </div>
