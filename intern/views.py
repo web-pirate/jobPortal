@@ -45,7 +45,7 @@ def home(request):
         job_append.reverse()
         return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
     else:
-        return render(request, 'home.html', {'user_obj': user_object, 'job_order': job_append})
+        return render(request, 'home.html', {'user_obj': user_object})
 
 
 def register(request):
