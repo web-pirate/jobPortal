@@ -378,7 +378,7 @@
                 </div>
                 <div class="main-content">
                   <h3 class="title">
-                    <a href="job-details.html">{{job.jposition}}</a>
+                    <a href="job-details.html">{{job.jposition|truncatechars:25 }}</a>
                   </h3>
                   {% if job.job_type == "Full-Time" %}
                   <h5 class="work-type" >{{job.jtype}}</h5>
