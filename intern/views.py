@@ -16,6 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
     user_object = User.objects.all()
+    verifed_user = reversed(Profile.objects.all())
     # try:
     #     if request.method == 'POST':
     #         nemail = request.POST.get('news_email')
@@ -214,7 +215,7 @@ def company_profile(request):
     current_user = request.user
     if current_user:
         company_obj = Company_profile.objects.filter(user=current_user).first()
-        pro_job = Job.objects.filter(jcname=company_obj).all()
+        pro_job = reversed(Job.objects.filter(jcname=company_obj).all())
         return render(request, 'company_profile.html', {'company': company_obj, "job": pro_job})
     else:
         return render(request, 'company_profile.html')
@@ -252,8 +253,32 @@ def company_registration(request):
 def company_view(request, cname):
     comp_obj = Company_profile.objects.filter(cname=cname).first()
     ident = comp_obj.id
-    job_obj = Job.objects.filter(jcname=ident).all()
-    return render(request, 'company_view.html', {"company": comp_obj, "job": job_obj})
+    job_obj = reversed(Job.objects.filter(jcname=ident).all())
+    count = 0
+    job_app = []
+    i = 0
+    for i in job_obj:
+        ad = job_app.append(i)
+        count = count + 1
+        if count == 3:
+            break
+    return render(request, 'company_view.html', {"company": comp_obj, "job": job_app})
+
+
+# def job_view(request):
+#     comp_obj = Company_profile.objects.filter(cname=cname).first()
+#     ident = comp_obj.id
+#     job_obj = reversed(Job.objects.filter(jcname=ident).all())
+#     count = 0
+#     job_app = []
+#     # i = id
+#     for i in job_obj:
+#         ad = job_app.append(i)
+#         count = count + 1
+#         if count == 3:
+#             break
+#     return render(request, 'company_view.html', {"company": comp_obj, "job": job_app})
+#     pass
 
 
 def edit_company(request, company_obj):
@@ -304,3 +329,40 @@ def remove_job(request, job_id):
     else:
         print(f'{job_obj.job_position} is not deleted!!!')
         return redirect('company_profile')
+
+
+def jobs(request):
+    job_obj = reversed(Job.objects.all())
+    count = 0
+    job_ap = []
+    for i in job_obj:
+        ap = job_ap.append(i)
+        count = count + 1
+        if count > 12:
+            break
+    return render(request, 'jobsall.html', {"job": job_ap})
+
+
+def job_create(request):
+    current = request.user.is_authenticated
+    if current:
+        current_user = request.user
+        print(current_user)
+        user_obj = User.objects.filter(username=current_user).first()
+        comp_obj = Company_profile.objects.filter(user=user_obj).first()
+        print(comp_obj)
+        return render(request, 'job_create.html', {'company': comp_obj})
+    elif request.method == 'POST':
+        jposition = request.POST.get('jposition')
+        jlocation = request.POST.get('jlocation')
+        jdesc = request.POST.get('jdesc')
+        jsalary = request.POST.get('jsalary')
+        jtype = request.POST.get('jtype')
+
+        job_create = Job(jcname=comp_obj, jposition=jposition, jlocation=jlocation, jdesc=jdesc,
+                         jsalary=jsalary, jtype=jtype)
+        job_create.save()
+        print(job_create)
+        return redirect('company_profile')
+    else:
+        return home(request)

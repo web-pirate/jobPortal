@@ -65,9 +65,11 @@
                 </button></a
               >
               {% if user.is_authenticated %}
-              <button type="button" class="btn-theme btn-white">
-                Create Job
-              </button>
+              <a href="{% url 'job_create' %}">
+                <button type="button" class="btn-theme btn-white">
+                  Create Job
+                </button>
+              </a>
               {% else %}
               <button type="button" class="btn-theme btn-white">
                 Add Review

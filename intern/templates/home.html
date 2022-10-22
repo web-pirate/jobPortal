@@ -40,6 +40,7 @@
                                   <input
                                     type="text"
                                     class="form-control"
+                                    style="height: 54px !important; line-height:54px"
                                     placeholder="Job title or keywords"
                                   />
                                 </div>
@@ -48,7 +49,7 @@
                                 class="col-lg-auto col-sm-6 col-12 flex-grow-1"
                               >
                                 <div class="form-group">
-                                  <select class="form-control">
+                                  <select class="form-control" style="height: 54px !important; line-height:54px">
                                     <option value="1" selected>
                                       Choose City
                                     </option>
@@ -64,7 +65,7 @@
                                 class="col-lg-auto col-sm-6 col-12 flex-grow-1"
                               >
                                 <div class="form-group">
-                                  <select class="form-control">
+                                  <select class="form-control" style="height: 54px !important; line-height:54px">
                                     <option value="1" selected>Category</option>
                                     <option value="2">Web Designer</option>
                                     <option value="3">Web Developer</option>
@@ -79,8 +80,8 @@
                               <div
                                 class="col-lg-auto col-sm-6 col-12 flex-grow-1"
                               >
-                                <div class="form-group">
-                                  <button type="button" class="btn-form-search">
+                                <div class="form-group" style="height: 54px !important;">
+                                  <button type="button" class="btn-form-search" style="height: 54px !important;">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                   </button>
                                 </div>
@@ -202,119 +203,7 @@
                 <div class="content">
                   <h3 class="title">
                     <a href="job-details.html"
-                      >Education/Training <span>(212)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Design/Creative <span>(93)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Health & Fitness <span>(4)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Research/Consultancy <span>(34)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Engineer/Architects <span>(376)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Telecommunication <span>(450)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Data Entry/Operator <span>(25)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Production/Operation <span>(95)</span></a
-                    >
-                  </h3>
-                </div>
-                <a class="overlay-link" href="job-details.html"></a>
-              </div>
-              <!--== End Job Category Item ==-->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <!--== Start Job Category Item ==-->
-              <div class="job-category-item">
-                <div class="content">
-                  <h3 class="title">
-                    <a href="job-details.html"
-                      >Marketing/Sales <span>(666)</span></a
+                      >Security/Support Service <span>(62)</span></a
                     >
                   </h3>
                 </div>
@@ -389,11 +278,11 @@
                   {% else %}
                   <h5 class="work-type" data-text-color="#ff7e00">{{job.jtype}}</h5>
                   {% endif %}
-                  <p class="desc">{{job.job_description|truncatechars:65}}</p>
+                  <p class="desc">{{job.jdesc|truncatechars:65}}</p>
                 </div>
                 <div class="recent-job-info">
                   <div class="salary">
-                    <h4>${{job.jsalary}}</h4>
+                    <h4>₹{{job.jsalary}}</h4>
                     <p>/monthly</p>
                   </div>
                   <a class="btn-theme btn-sm" href="{% url 'company_view' job.jcname %}"
@@ -768,10 +657,7 @@
                     <div class="swiper-slide">
                       <!--== Start Brand Logo Item ==-->
                       <div class="brand-logo-item">
-                        <img
-                          src="{% static 'img/brand-logo/1' %}.webp"
-                          alt="Image-HasTech"
-                        />
+                        <p>Manish</p>
                       </div>
                       <!--== End Brand Logo Item ==-->
                     </div>
@@ -898,11 +784,10 @@
                             making.
                           </p>
                           <div class="rating-box">
-                            <i class="icofont-star"></i>
-                            <i class="icofont-star"></i>
-                            <i class="icofont-star"></i>
-                            <i class="icofont-star"></i>
-                            <i class="icofont-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            
                           </div>
                           <div class="testi-quote">
                             <img

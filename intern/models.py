@@ -1,4 +1,3 @@
-from time import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -51,6 +50,7 @@ class Job(models.Model):
     jcreated = models.DateTimeField(auto_now_add=True)
     jlocation = models.CharField(max_length=500, default="Work From Home")
     jsalary = models.IntegerField(default="7000")
+    jdesc = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.jposition
