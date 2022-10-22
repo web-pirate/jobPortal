@@ -30,7 +30,7 @@ def home(request):
     #     print(e)
     #     return redirect('home')
     print(user_object)
-    job_order = Job.objects.all()
+    job_order = reversed(Job.objects.all())
     if job_order is not None:
         count = 0
         job_append = []
@@ -40,7 +40,7 @@ def home(request):
             count = count + 1
             if count == 3:
                 break
-        job_append.reverse()
+        # job_append.reverse()
     return render(request, 'home.html', {'user_obj': user_object, "job_order": job_append})
     # else:
     #     return render(request, 'home.html', {'user_obj': user_object})
