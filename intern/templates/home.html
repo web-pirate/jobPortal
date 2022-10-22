@@ -9,7 +9,7 @@
           <div class="home-slider-wrapper slider-default">
             <div
               class="slider-content-area"
-              data-bg-img="{% static 'img/slider/slider-bg.webp' %}"
+              data-bg-img="{% static 'img/slider/slider-bg2.webp' %}"
             >
               <div class="container pt--0 pb--0">
                 <div class="slider-container">
@@ -413,9 +413,9 @@
           <div class="row">
             <div class="col-12">
               <div class="section-title text-center">
-                <h3 class="title">How It Work?</h3>
+                <h3 class="title">How To Apply?</h3>
                 <div class="desc">
-                  <p>Many desktop publishing packages and web page editors</p>
+                  <p>By the below-mentioned steps, you can apply to your favourite company.</p>
                 </div>
               </div>
             </div>
@@ -426,27 +426,28 @@
                 <div class="working-col">
                   <!--== Start Work Process ==-->
                   <div class="working-process-item">
-                    <div class="icon-box">
-                      <div class="inner">
-                        <img
-                          class="icon-img"
-                          src="{% static 'img/icons/w1.webp' %}"
-                          alt="Image-HasTech"
-                        />
-                        <img
-                          class="icon-hover"
-                          src="{% static 'img/icons/w1-hover' %}.webp"
-                          alt="Image-HasTech"
-                        />
+                    <a href="{% url 'register' %}">
+                      <div class="icon-box">
+                        <div class="inner">
+                          <img
+                            class="icon-img"
+                            src="{% static 'img/icons/w1.webp' %}"
+                            alt="Image-HasTech"
+                          />
+                          <img
+                            class="icon-hover"
+                            src="{% static 'img/icons/w1-hover' %}.webp"
+                            alt="Image-HasTech"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="content">
-                      <h4 class="title">Create an Account</h4>
-                      <p class="desc">
-                        It is long established fact reader distracted readable
-                        content
-                      </p>
-                    </div>
+                      <div class="content">
+                        <h4 class="title">Create an Account</h4>
+                        <p class="desc">
+                          Sign up to get access to free resources and latest job news.
+                        </p>
+                      </div>
+                    </a>
                     <div class="shape-arrow-icon">
                       <img
                         class="shape-icon"
@@ -462,7 +463,7 @@
                   </div>
                   <!--== End Work Process ==-->
                 </div>
-                <div class="working-col">
+                {% comment %} <div class="working-col">
                   <!--== Start Work Process ==-->
                   <div class="working-process-item">
                     <div class="icon-box">
@@ -500,7 +501,7 @@
                     </div>
                   </div>
                   <!--== End Work Process ==-->
-                </div>
+                </div> {% endcomment %}
                 <div class="working-col">
                   <!--== Start Work Process ==-->
                   <div class="working-process-item">
@@ -521,8 +522,7 @@
                     <div class="content">
                       <h4 class="title">Find Your Job</h4>
                       <p class="desc">
-                        It is long established fact reader distracted readable
-                        content
+                        Find a job that better fits your life.
                       </p>
                     </div>
                     <div class="shape-arrow-icon">
@@ -560,8 +560,7 @@
                     <div class="content">
                       <h4 class="title">Save & Apply</h4>
                       <p class="desc">
-                        It is long established fact reader distracted readable
-                        content
+                        You are just a step away from getting a job.
                       </p>
                     </div>
                     <div class="shape-arrow-icon d-none">
@@ -589,19 +588,18 @@
       <!--== Start Divider Area Wrapper ==-->
       <section
         class="sec-overlay sec-overlay-theme bg-img"
-        data-bg-img="{% static 'img/photos/bg1.webp' %}"
+        data-bg-img="{% static 'img/photos/bg.webp' %}"
       >
         <div class="container pt--0 pb--0">
           <div class="row justify-content-center divider-style1">
             <div class="col-lg-10 col-xl-7">
               <div class="divider-content text-center">
-                <h4 class="sub-title" data-aos="fade-down">
-                  Trial Version Available
+                <h4 class="title" data-aos="fade-down">
+                  Book your Free IT Expert Session
                 </h4>
-                <h2 class="title" data-aos="fade-down">
-                  Download Our Mobile App. <br />You Can Ready Resume & Apply
-                  Job.
-                </h2>
+                <p class="sub-title" data-aos="fade-down">
+                  You can take the IT Expert session from anywhere as per your convenience.<br/>A laptop or mobile with good internet connection for facilitating LIVE Session is required.
+                </p>
                 <div class="divider-btn-group">
                   <a
                     class="btn-divider"
@@ -668,7 +666,7 @@
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="candidate-details.html">Lauran Benitez</a>
+                    <a href="candidate-details.html">Vishal Singh</a>
                   </h4>
                   <h5 class="sub-title">Web Designer</h5>
                   <div class="rating-box">
@@ -852,6 +850,7 @@
         </div>
       </div>
       <!--== End Brand Logo Area Wrapper ==-->
+
 
       <!--== Start Testimonial Area Wrapper ==-->
       <section class="testimonial-area bg-color-gray">
@@ -1146,66 +1145,68 @@
               </div>
               <!--== End Blog Post Item ==-->
             </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-left">
+            <div class="col-md-6 col-lg-4" data-aos="fade-center">
               <!--== Start Blog Post Item ==-->
               <div class="post-item">
-                <div class="thumb mb--0">
+                <div class="thumb">
                   <a href="blog-details.html"
                     ><img
-                      src="{% static 'img/blog/h1.webp' %}"
+                      src="{% static 'img/blog/1.webp' %}"
                       alt="Image"
                       width="370"
-                      height="440"
+                      height="270"
                   /></a>
+                </div>
+                <div class="content">
+                  <div class="author">
+                    By <a href="blog.html">Walter Houston</a>
+                  </div>
+                  <h4 class="title">
+                    <a href="blog-details.html"
+                      >It long established fact that reader will distracted the
+                      readable.</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="post-date">03 April, 2022</span>
+                    <span class="dots"></span>
+                    <span class="post-time">10 min read</span>
+                  </div>
                 </div>
               </div>
               <!--== End Blog Post Item ==-->
             </div>
-            <div class="col-lg-4" data-aos="fade-left">
-              <div class="post-home-list-style">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="content">
-                    <div class="author">
-                      By <a href="blog.html">Walter Houston</a>
-                    </div>
-                    <h4 class="title">
-                      <a href="blog-details.html"
-                        >Established fact and readeren will distracted the
-                        readable content.</a
-                      >
-                    </h4>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-left">
+              <!--== Start Blog Post Item ==-->
+              <div class="post-item">
+                <div class="thumb">
+                  <a href="blog-details.html"
+                    ><img
+                      src="{% static 'img/blog/1.webp' %}"
+                      alt="Image"
+                      width="370"
+                      height="270"
+                  /></a>
+                </div>
+                <div class="content">
+                  <div class="author">
+                    By <a href="blog.html">Walter Houston</a>
+                  </div>
+                  <h4 class="title">
+                    <a href="blog-details.html"
+                      >It long established fact that reader will distracted the
+                      readable.</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="post-date">03 April, 2022</span>
+                    <span class="dots"></span>
+                    <span class="post-time">10 min read</span>
                   </div>
                 </div>
-                <!--== End Blog Post Item ==-->
-
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="content">
-                    <div class="author">
-                      By <a href="blog.html">Walter Houston</a>
-                    </div>
-                    <h4 class="title">
-                      <a href="blog-details.html"
-                        >With WooLentor's drag-and drop interface for
-                        creating...</a
-                      >
-                    </h4>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
               </div>
-            </div>
+              <!--== End Blog Post Item ==-->
+            </div>  
           </div>
         </div>
       </section>

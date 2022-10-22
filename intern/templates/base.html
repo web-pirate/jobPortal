@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Finate - Job Portal Website Template Using Bootstrap 5"
+      content="Termi - Job Portal"
     />
     <meta
       name="keywords"
@@ -15,10 +15,10 @@
     />
     <meta name="author" content="hastech" />
 
-    <title>Finate - Job Portal Website Template Using Bootstrap 5</title>
+    <title>Termi - Job Portal </title>
 
     <!--== Favicon ==-->
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'img/title.png' %}" type="image/x-icon" />
 
     <!--== Google Fonts ==-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -88,6 +88,11 @@
                               ><span>Job Details</span></a
                             >
                           </li>
+                          <li>
+                            <a href="{% url 'email_verify' %}"
+                              ><span>Job Details</span></a
+                            >
+                          </li>
                           {% if user.is_authenticated %}
                           <li>
                             <a href="{% url 'company_profile' %}"
@@ -132,7 +137,7 @@
                               >Blog Right Sidebar</a
                             >
                           </li>
-                          <li><a href="blog-details.html">Blog Details</a></li>
+                          <li><a href="{% url 'blog_content' %}">Blog Details</a></li>
                         </ul>
                       </li>
                       <li class="has-submenu">
@@ -150,7 +155,7 @@
                         <a href="#/"><span>Account</span></a>
                         <ul class="submenu-nav">
                           <li>
-                            <a href="about-us.html"><span>About us</span></a>
+                            <a href="{% url 'about' %}"><span>About us</span></a>
                           </li>
                           <li>
                             <a href="{% url 'login' %}"><span>Login</span></a>
@@ -168,8 +173,19 @@
                         </ul>
                         {% endif %}
                       </li>
-                      <li>
-                        <a href="{% url 'contact' %}"><span>Contact</span></a>
+                      
+                      <li class="has-submenu">
+                        <a href="#/"><span>Contact</span></a>
+                        <ul class="submenu-nav">
+                          <li>
+                            <a href="{% url 'about' %}"><span>About Us</span></a>
+                          </li>
+                          <li>
+                            <a href="{% url 'contact' %}"
+                              ><span>Contact Us</span></a
+                            >
+                          </li>
+                        </ul>
                       </li>
                     </ul>
                   </div>
@@ -293,7 +309,7 @@
                         <div class="collapse-body">
                           <div class="widget-menu-wrap">
                             <ul class="nav-menu">
-                              <li><a href="about-us.html">About Us</a></li>
+                              <li><a href="{% url 'about' %}">About Us</a></li>
                               <li><a href="about-us.html">Why Extobot</a></li>
                               <li>
                                 <a href={% url 'contact' %}>Contact With Us</a>
@@ -386,6 +402,8 @@
                                 <a href="{% url 'register' %}">Registration</a>
                               </li>
                               <li><a href="{% url 'login' %}">Login</a></li>
+                              <li><a href="{% url 'about' %}">About Us</a></li>
+                              
                               {% comment %} <li><a href="{% url 'company_registration' %}">Company Registration</a></li>
                               <li> 
                                 <a href="about-us.html">Price & Planing</a> {% endcomment %}
@@ -410,10 +428,10 @@
               <div class="col-12">
                 <div class="footer-bottom-content">
                   <p class="copyright">
-                    © 2021 Finate. Made with <i class="fa-solid fa-heart"></i> by
+                    © 2022 Termi. Made with <i class="fa-solid fa-heart"></i> by
                     <a
                       target="_blank"
-                      href="#"
+                      href="www.linkedin.com/in/vishal-singh-indore"
                       >Vishal.</a
                     >
                   </p>
@@ -484,13 +502,20 @@
               <li>
                 <a href="#">Pages</a>
                 <ul class="sub-menu">
-                  <li><a href="about-us.html">About us</a></li>
+                  <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'login' %}">Login</a></li>
                   <li><a href="{% url 'register' %}">Registration</a></li>
                   <li><a href="page-not-found.html">Page Not Found</a></li>
                 </ul>
               </li>
-              <li><a href="contact.html">Contact</a></li>
+              <li>
+                <a href="#">Contact</a>
+                <ul class="sub-menu">
+                  <li><a href="{% url 'about' %}">About Us</a></li>
+                  <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+              </li>
+              
             </ul>
           </div>
           <!-- Mobile Menu End -->

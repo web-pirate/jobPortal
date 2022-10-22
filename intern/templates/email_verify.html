@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<main class="main-content">
+  <!--== Start Page Header Area Wrapper ==-->
+  <div
+    class="page-header-area sec-overlay sec-overlay-black"
+    data-bg-img="{% static 'img/photos/bg2.webp' %}"
+  >
+    <div class="container pt--0 pb--0">
+      <div class="row">
+        <div class="col-12">
+          <div class="page-header-content">
+            <h2 class="title">Email Verification</h2>
+            <nav class="breadcrumb-area">
+              <ul class="breadcrumb justify-content-center">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-sep">//</li>
+                <li>Email Verification</li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--== End Page Header Area Wrapper ==-->
+
+  <div id="main-wrapper">
+    <div class="verification section-padding">
+      <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+          <div class="col-xl-5 col-md-6">
+            <div class="mini-logo text-center my-4">
+              <a href="{% url 'home' %}"
+                ><img src="{% static 'img/elogo.webp' %}" alt="#"
+              /></a>
+              <h4 class="card-title mt-5">Verify your Email</h4>
+            </div>
+            <div class="auth-form card">
+              <div class="card-body">
+                <form>
+                  <div class="identity-content">
+                    <span class="icon"><i class="icofont-email"></i></span>
+                    <p>
+                      We sent verification email to
+                      <strong class="text-dark">example@email.com</strong>.
+                      Click the link inside to get started!
+                    </p>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer text-center">
+                <a href="{% url 'home' %}">Go to Dashboard</a>
+              </div>
+              <div class="card-footer text-center">
+                <a href="{% url 'register' %}">Email didn't arrive?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

@@ -14,5 +14,4 @@ class JobFilter(admin.ModelAdmin):
 admin.site.register(Profile)
 admin.site.register(Newsletters)
 admin.site.register(Company_profile, DataAdmin)
-admin.site.register(Job, JobFilter)
 admin.site.register(Contact)

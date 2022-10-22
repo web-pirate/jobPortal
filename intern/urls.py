@@ -11,6 +11,11 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     # Extra's
     path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    path('blog_content/', views.blog_content, name='blog_content'),
+    path('email_verify/', views.email_verify, name='email_verify'),
+
+
 
     # Pages associated with email
     path('token/', views.token_send, name='token'),
@@ -30,7 +35,7 @@ urlpatterns = [
     path('user_view/<pk>', views.user_view, name='user_view'),
 
     # Job Associated Pages
-    path('remove_job/<job_id>', views.remove_job, name='remove_job'),
+    # path('remove_job/<job_id>', views.remove_job, name='remove_job'),
 
 
 

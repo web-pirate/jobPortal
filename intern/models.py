@@ -42,17 +42,3 @@ class Company_profile(models.Model):
 
 class Newsletters(models.Model):
     nemail = models.EmailField(max_length=100)
-
-
-class Job(models.Model):
-    cname = models.ForeignKey(Company_profile, on_delete=models.CASCADE)
-    job_position = models.CharField(max_length=100, blank=False)
-    salary = models.IntegerField()
-    job_description = models.CharField(max_length=1000, blank=False)
-    job_experience = models.CharField(max_length=100, default="Fresher")
-    job_type = models.CharField(max_length=100, default="Full-Time")
-    job_location = models.CharField(
-        max_length=100, default="Work From Home")
-
-    def __str__(self):
-        return self.cname.cname

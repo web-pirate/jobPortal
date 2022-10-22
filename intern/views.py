@@ -119,6 +119,18 @@ def logout(request):
     return redirect('home')
 
 
+def about(request):
+    return render(request, 'about.html')
+
+
+def blog_content(request):
+    return render(request, 'blog_content.html')
+
+
+def email_verify(request):
+    return render(request, 'email_verify.html')
+
+
 @csrf_exempt
 def contact(request):
     current_obj = request.user
@@ -207,8 +219,7 @@ def company_profile(request):
     if current_user:
         company_obj = Company_profile.objects.filter(user=current_user).first()
         print(company_obj.cimage)
-        job_obj = Job.objects.filter(cname=company_obj).all()
-        return render(request, 'company_profile.html', {'company': company_obj, 'job': job_obj})
+        return render(request, 'company_profile.html', {'company': company_obj})
     else:
         return render(request, 'company_profile.html')
 
@@ -278,15 +289,15 @@ def user_view(request, pk):
     return render(request, 'user_view.html', {"user_obj": user_obj})
 
 
-def remove_job(request, job_id):
-    owner = request.user
-    com_detail = Company_profile.objects.filter(user=owner).first()
-    print(com_detail)
-    job_obj = Job.objects.filter(id=job_id).first()
-    if com_detail:
-        print('if')
-        job_obj.delete()
-        return redirect('home')
-    else:
-        print(f'{job_obj.job_position} is not deleted!!!')
-        return redirect('company_profile')
+# def remove_job(request, job_id):
+#     owner = request.user
+#     com_detail = Company_profile.objects.filter(user=owner).first()
+#     print(com_detail)
+#     job_obj = Job.objects.filter(id=job_id).first()
+#     if com_detail:
+#         print('if')
+#         job_obj.delete()
+#         return redirect('home')
+#     else:
+#         print(f'{job_obj.job_position} is not deleted!!!')
+#         return redirect('company_profile')
