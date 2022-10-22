@@ -124,18 +124,18 @@
                     <div class="content">
                       <h4 class="name">
                         <a href="company-details.html"
-                          >{{emp.cname|truncatechars:25}}</a
+                          >{{emp.jcname|truncatechars:25}}</a
                         >
                       </h4>
-                      <p class="address">{{company.clocation}}</p>
+                      <p class="address">{{emp.jlocation}}</p>
                     </div>
                   </div>
                   <div class="main-content">
                     <h3 class="title">
-                      <a href="job-details.html">{{emp.job_position}}</a>
+                      <a href="job-details.html">{{emp.jposition}}</a>
                     </h3>
                     <h5 class="work-type" data-text-color="#ff7e00">
-                      {{emp.job_type}}
+                      {{emp.jtype}}
                     </h5>
                     <p class="desc">
                       CSS3, HTML5, Javascript, Bootstrap, Jquery
@@ -143,7 +143,7 @@
                   </div>
                   <div class="recent-job-info">
                     <div class="salary">
-                      <h4>${{emp.salary}}</h4>
+                      <h4>${{emp.jsalary}}</h4>
                       <p>/monthly</p>
                     </div>
                     <a

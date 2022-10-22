@@ -19,7 +19,6 @@ urlpatterns = [
 
     # Pages associated with email
     path('token/', views.token_send, name='token'),
-    path('success/', views.success, name='success'),
     path('verify/<auth_token>', views.verify, name='verify'),
     path('error/', views.error, name='error'),
     path('email/', views.email_template, name='email_template'),
@@ -35,7 +34,7 @@ urlpatterns = [
     path('user_view/<pk>', views.user_view, name='user_view'),
 
     # Job Associated Pages
-    # path('remove_job/<job_id>', views.remove_job, name='remove_job'),
+    path('remove_job/<job_id>', views.remove_job, name='remove_job'),
 
 
 

@@ -1,4 +1,4 @@
-from email.policy import default
+from time import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -30,11 +30,11 @@ class Company_profile(models.Model):
     cname = models.CharField(max_length=100)
     cemail = models.EmailField(max_length=100)
     clocation = models.CharField(max_length=1000)
-    cphone = models.IntegerField(null=True, blank=False)
+    cphone = models.CharField(null=True, blank=False, max_length=12)
     cimage = models.ImageField(
-        blank=False, upload_to='cprofile_img')
+        blank=True, upload_to='cprofile_img')
     cdescription = models.CharField(max_length=5000)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.cname
@@ -47,3 +47,10 @@ class Newsletter(models.Model):
 class Job(models.Model):
     jcname = models.ForeignKey(Company_profile, on_delete=models.CASCADE)
     jposition = models.CharField(max_length=100)
+    jtype = models.CharField(max_length=50)
+    jcreated = models.DateTimeField(auto_now_add=True)
+    jlocation = models.CharField(max_length=500, default="Work From Home")
+    jsalary = models.IntegerField(default="7000")
+
+    def __str__(self):
+        return self.jposition

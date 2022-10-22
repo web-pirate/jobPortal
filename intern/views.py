@@ -30,18 +30,18 @@ def home(request):
     #     print(e)
     #     return redirect('home')
     print(user_object)
-    # job_order = Job.objects.all()
-    # if job_order is not None:
-    #     count = 0
-    #     job_append = []
-    #     for i in job_order:
-    #         print(i)
-    #         job_add = job_append.append(i)
-    #         count = count + 1
-    #         if count == 3:
-    #             break
-    #     job_append.reverse()
-    return render(request, 'home.html', {'user_obj': user_object})
+    job_order = Job.objects.all()
+    if job_order is not None:
+        count = 0
+        job_append = []
+        for i in job_order:
+            print(i)
+            job_add = job_append.append(i)
+            count = count + 1
+            if count == 3:
+                break
+        job_append.reverse()
+    return render(request, 'home.html', {'user_obj': user_object, "job_order": job_append})
     # else:
     #     return render(request, 'home.html', {'user_obj': user_object})
 
@@ -157,10 +157,6 @@ def contact(request):
     return render(request, 'contact.html', {'user': user_obj})
 
 
-def success(request):
-    return render(request, 'success.html')
-
-
 def token_send(request):
     return render(request, 'token_send.html')
 
@@ -177,7 +173,7 @@ def verify(request, auth_token):
             profile_obj.save()
             messages.add_message(request, messages.INFO,
                                  "E-mail Verified Successfull")
-            return redirect('success')
+            return redirect('email_verify')
         else:
             return redirect('error')
 
@@ -218,8 +214,8 @@ def company_profile(request):
     current_user = request.user
     if current_user:
         company_obj = Company_profile.objects.filter(user=current_user).first()
-        print(company_obj.cimage)
-        return render(request, 'company_profile.html', {'company': company_obj})
+        pro_job = Job.objects.filter(jcname=company_obj).all()
+        return render(request, 'company_profile.html', {'company': company_obj, "job": pro_job})
     else:
         return render(request, 'company_profile.html')
 
@@ -289,15 +285,15 @@ def user_view(request, pk):
     return render(request, 'user_view.html', {"user_obj": user_obj})
 
 
-# def remove_job(request, job_id):
-#     owner = request.user
-#     com_detail = Company_profile.objects.filter(user=owner).first()
-#     print(com_detail)
-#     job_obj = Job.objects.filter(id=job_id).first()
-#     if com_detail:
-#         print('if')
-#         job_obj.delete()
-#         return redirect('home')
-#     else:
-#         print(f'{job_obj.job_position} is not deleted!!!')
-#         return redirect('company_profile')
+def remove_job(request, job_id):
+    owner = request.user
+    com_detail = Company_profile.objects.filter(user=owner).first()
+    print(com_detail)
+    job_obj = Job.objects.filter(id=job_id).first()
+    if com_detail:
+        print('if')
+        job_obj.delete()
+        return redirect('home')
+    else:
+        print(f'{job_obj.job_position} is not deleted!!!')
+        return redirect('company_profile')

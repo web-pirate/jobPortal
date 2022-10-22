@@ -371,27 +371,29 @@
                   </div>
                   <div class="content">
                     <h4 class="name">
-                      <a href="company-details.html">{{job.cname|truncatechars:25 }}</a>
+                      <a href="company-details.html">{{job.jcname|truncatechars:25 }}</a>
                     </h4>
-                    <p class="address">{{job.job_location}}</p>
+                    <p class="address">{{job.jlocation}}</p>
                   </div>
                 </div>
                 <div class="main-content">
                   <h3 class="title">
-                    <a href="job-details.html">{{job.job_position}}</a>
+                    <a href="job-details.html">{{job.jposition}}</a>
                   </h3>
                   {% if job.job_type == "Full-Time" %}
-                  <h5 class="work-type" >{{job.job_type}}</h5>
+                  <h5 class="work-type" >{{job.jtype}}</h5>
                   {% elif job.job_type == "Remote" %}
-                  <h5 class="work-type" data-text-color="#0054ff">{{job.job_type}}</h5>
+                  <h5 class="work-type" data-text-color="#0054ff">{{job.jtype}}</h5>
                   {% elif job.job_type == "Part-Time" %}
-                  <h5 class="work-type" data-text-color="#ff7e00">{{job.job_type}}</h5>
+                  <h5 class="work-type" data-text-color="#ff7e00">{{job.jtype}}</h5>
+                  {% else %}
+                  <h5 class="work-type" data-text-color="#ff7e00">{{job.jtype}}</h5>
                   {% endif %}
                   <p class="desc">{{job.job_description|truncatechars:65}}</p>
                 </div>
                 <div class="recent-job-info">
                   <div class="salary">
-                    <h4>${{job.salary}}</h4>
+                    <h4>${{job.jsalary}}</h4>
                     <p>/monthly</p>
                   </div>
                   <a class="btn-theme btn-sm" href="{% url 'company_profile' %}"

@@ -8,11 +8,11 @@ class DataAdmin(admin.ModelAdmin):
 
 
 class JobFilter(admin.ModelAdmin):
-    list_display = ('cname', 'job_position', 'salary', 'job_type')
+    list_display = ('jposition', 'jlocation', 'jcname', 'jcreated')
 
 
 admin.site.register(Profile)
 admin.site.register(Newsletter)
 admin.site.register(Company_profile, DataAdmin)
 admin.site.register(Contact)
-admin.site.register(Job)
+admin.site.register(Job, JobFilter)
