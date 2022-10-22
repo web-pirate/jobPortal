@@ -28,6 +28,7 @@ urlpatterns = [
     path('company_registration/', views.company_registration,
          name='company_registration'),
     path('edit_company/<company_obj>', views.edit_company, name='edit_company'),
+    path('company_view/<cname>', views.company_view, name='company_view'),
 
     # User Associated Pages
     path('user_list/', views.user_list, name='user_list'),

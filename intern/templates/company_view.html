@@ -59,7 +59,7 @@
                 >
                 {% endif %}
               </ul>
-              <a href="{% url 'edit_company' company.cname %}">
+              <a href="{% url 'home' %}">
                 <button type="button" class="btn-theme">
                   <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Edit
                 </button></a
@@ -150,8 +150,8 @@
                     </div>
                     <a
                       class="btn-theme btn-sm"
-                      href="{% url 'remove_job' emp.id %}"
-                      >Delete Now</a
+                      href="{% url "home" %}"
+                      >Apply Now</a
                     >
                   </div>
                 </div>

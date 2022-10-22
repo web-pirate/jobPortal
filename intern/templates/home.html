@@ -378,7 +378,7 @@
                 </div>
                 <div class="main-content">
                   <h3 class="title">
-                    <a href="job-details.html">{{job.jposition|truncatechars:25 }}</a>
+                    <a href="job-details.html">{{job.jposition|truncatechars:20 }}</a>
                   </h3>
                   {% if job.job_type == "Full-Time" %}
                   <h5 class="work-type" >{{job.jtype}}</h5>
@@ -396,7 +396,7 @@
                     <h4>${{job.jsalary}}</h4>
                     <p>/monthly</p>
                   </div>
-                  <a class="btn-theme btn-sm" href="{% url 'company_profile' %}"
+                  <a class="btn-theme btn-sm" href="{% url 'company_view' job.jcname %}"
                     >Apply Now</a
                   >
                 </div>

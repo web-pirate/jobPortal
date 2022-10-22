@@ -249,6 +249,13 @@ def company_registration(request):
             return render(request, 'company_registration.html')
 
 
+def company_view(request, cname):
+    comp_obj = Company_profile.objects.filter(cname=cname).first()
+    ident = comp_obj.id
+    job_obj = Job.objects.filter(jcname=ident).all()
+    return render(request, 'company_view.html', {"company": comp_obj, "job": job_obj})
+
+
 def edit_company(request, company_obj):
     user_obj = request.user
     company_obj = Company_profile.objects.filter(user=user_obj).first()
