@@ -12,6 +12,7 @@ class JobFilter(admin.ModelAdmin):
 
 
 admin.site.register(Profile)
-admin.site.register(Newsletters)
+admin.site.register(Newsletter)
 admin.site.register(Company_profile, DataAdmin)
 admin.site.register(Contact)
+admin.site.register(Job)

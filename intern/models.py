@@ -1,4 +1,5 @@
 from email.policy import default
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -40,5 +41,10 @@ class Company_profile(models.Model):
         return self.cname
 
 
-class Newsletters(models.Model):
+class Newsletter(models.Model):
     nemail = models.EmailField(max_length=100)
+
+
+class Job(models.Model):
+    jcname = models.ForeignKey(Company_profile, on_delete=models.CASCADE)
+    jposition = models.CharField(max_length=100)
