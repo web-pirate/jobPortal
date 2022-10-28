@@ -236,7 +236,7 @@ def company_registration(request):
     if company_profile_obj:
         messages.add_message(request, messages.INFO,
                              f"{user_obj}, your Company is already exist.")
-        return redirect('company_profile', {'title': title})
+        return redirect('company_profile')
     else:
         print(user_obj)
         if request.method == "POST":
