@@ -15,7 +15,7 @@
     />
     <meta name="author" content="hastech" />
 
-    <title>Termi - Job Portal </title>
+    <title>Termi - {{title}} </title>
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="{% static 'img/title.png' %}" type="image/x-icon" />
@@ -114,6 +114,12 @@
                           <li>
                             <a href="{% url 'user_list' %}"><span>Candidates</span></a>
                           </li>
+                          <li>
+                            <a href="{% url 'user_details' %}"><span>One Time Edit</span></a>
+                          </li>
+                          <li>
+                            <a href="{% url 'user_update' %}"><span>Profile Updation</span></a>
+                          </li>
                           {% if user.is_authenticated %}
                           <li>
                             <a href="{% url 'user_view' user.username %}"
@@ -141,7 +147,7 @@
                         <a href="#/"><span>Account</span></a>
                         <ul class="submenu-nav">
                           <li>
-                            <a href="about-us.html"><span>Profile</span></a>
+                            <a href="{% url 'user_view' request.user %}"><span>Profile</span></a>
                           </li>
                           <li>
                             <a href="{% url 'logout' %}"><span>Logout</span></a>
@@ -189,7 +195,7 @@
                 <div class="header-align-end">
                   <div class="header-action-area">
                     {% if user.is_authenticated %}
-                    <a class="btn-registration" href={% url 'company_profile' %}
+                    <a class="btn-registration" href={% url 'user_details' %}
                       ><span></span> {{user.username}}</a
                     >
                     {% else %}
@@ -225,7 +231,7 @@
       {% endcomment %} {% block content %}{% endblock content %}
 
       <!--== Start Footer Area Wrapper ==-->
-      <footer class="footer-area">
+      <footer class="footer-area mt-3">
         <!--== Start Footer Top ==-->
         <div class="footer-top">
           <div class="container pt--0 pb--0">
@@ -442,7 +448,7 @@
 
       <!--== Scroll Top Button ==-->
       <div id="scroll-to-top" class="scroll-to-top">
-        <span class="icofont-rounded-up"></span>
+        <span class="icofont-rounded-up"><i class="fa-solid fa-arrow-up"></i></span>
       </div>
 
       <!--== Start Aside Menu ==-->

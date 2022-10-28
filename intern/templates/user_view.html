@@ -89,9 +89,12 @@
                 <div class="candidate-details-content">
                   <div class="content-item">
                     <h4 class="title">
-                      Graphic Design <span>//</span> <span>2015 - 2018</span>
+                      {{userDetail.edu_type_1.capitalize}} <span>//</span>
+                      <span>{{userDetail.edu_year_1 }}</span>
                     </h4>
-                    <h5 class="sub-title">University of Michigan, Ann Arbor</h5>
+                    <h5 class="sub-title">
+                      {{userDetail.edu_inst_1.capitalize}}
+                    </h5>
                     <p class="desc">
                       It is a long established fact that a reader will be
                       distracted the readable content of a page when looking
@@ -175,48 +178,6 @@
                   </div>
                 </div>
               </div>
-              <div class="content-list-wrap">
-                <div class="content mb--0">
-                  <h4 class="title">Professional Skills</h4>
-                  <ul class="team-details-list mb--0">
-                    <li>
-                      <i class="icofont-check"></i> Web application Design
-                    </li>
-                    <li>
-                      <i class="icofont-check"></i> User Interface (UI) design
-                    </li>
-                    <li>
-                      <i class="icofont-check"></i> Mobile Application Design
-                    </li>
-                    <li><i class="icofont-check"></i> Landing Page Design</li>
-                    <li><i class="icofont-check"></i> Web Interface Design</li>
-                    <li><i class="icofont-check"></i> Interaction Design</li>
-                    <li><i class="icofont-check"></i> User Experience</li>
-                    <li><i class="icofont-check"></i> Graphic Design</li>
-                    <li><i class="icofont-check"></i> Branding & Identity</li>
-                    <li><i class="icofont-check"></i> Project Planning</li>
-                    <li><i class="icofont-check"></i> Prototyping</li>
-                    <li><i class="icofont-check"></i> Problem Solving</li>
-                  </ul>
-                </div>
-                <div class="content mb--0">
-                  <h4 class="title">Software Skills</h4>
-                  <ul class="team-details-list mb--0">
-                    <li><i class="icofont-check"></i> Adobe Photoshop</li>
-                    <li><i class="icofont-check"></i> Adobe Illustrator</li>
-                    <li><i class="icofont-check"></i> Adobe XD</li>
-                    <li><i class="icofont-check"></i> Figma</li>
-                    <li><i class="icofont-check"></i> Sketch</li>
-                    <li><i class="icofont-check"></i> InVision Studio</li>
-                    <li><i class="icofont-check"></i> UXPin</li>
-                    <li><i class="icofont-check"></i> MockFlow</li>
-                    <li><i class="icofont-check"></i> Balsamiq</li>
-                    <li><i class="icofont-check"></i> Microsoft Word</li>
-                    <li><i class="icofont-check"></i> Microsoft Excel</li>
-                    <li><i class="icofont-check"></i> Microsoft PowerPoint</li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
           <div class="col-lg-5 col-xl-4">
@@ -256,12 +217,15 @@
                       <tr>
                         <td class="table-name">Gender</td>
                         <td class="dotted">:</td>
-                        <td>Female</td>
+                        <td>{{userDetail.gender.capitalize}}</td>
                       </tr>
                       <tr>
                         <td class="table-name">Qualification</td>
                         <td class="dotted">:</td>
-                        <td>BSC, MSC</td>
+                        <td>
+                          {{userDetail.edu_type_1.capitalize}},
+                          {{userDetail.edu_type_2.capitalize}}
+                        </td>
                       </tr>
                       <tr>
                         <td class="table-name">Level</td>
@@ -277,34 +241,7 @@
                   </table>
                 </div>
               </div>
-              <div class="widget-item">
-                <div class="widget-title">
-                  <h3 class="title">Share With</h3>
-                </div>
-                <div class="social-icons">
-                  <a
-                    href="https://www.facebook.com"
-                    target="_blank"
-                    rel="noopener"
-                    ><i class="icofont-facebook"></i
-                  ></a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener"
-                    ><i class="icofont-twitter"></i
-                  ></a>
-                  <a href="https://www.skype.com" target="_blank" rel="noopener"
-                    ><i class="icofont-skype"></i
-                  ></a>
-                  <a
-                    href="https://www.pinterest.com"
-                    target="_blank"
-                    rel="noopener"
-                    ><i class="icofont-pinterest"></i
-                  ></a>
-                  <a href="https://dribbble.com/" target="_blank" rel="noopener"
-                    ><i class="icofont-dribbble"></i
-                  ></a>
-                </div>
-              </div>
+
               <div class="widget-item widget-contact">
                 <div class="widget-title">
                   <h3 class="title">Contact Now</h3>

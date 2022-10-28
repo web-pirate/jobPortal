@@ -1,0 +1,328 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+    <main class="main-content">
+      <!--== Start Page Header Area Wrapper ==-->
+      <div
+        class="page-header-area sec-overlay sec-overlay-black"
+        data-bg-img="{% static 'img/photos/bg2.webp' %}"
+      >
+        <div class="container pt--0 pb--0">
+          <div class="row">
+            <div class="col-12">
+              <div class="page-header-content">
+                <h2 class="title">{{current}}</h2>
+                <nav class="breadcrumb-area">
+                  <ul class="breadcrumb justify-content-center">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-sep">//</li>
+                    <li>Create Job</li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--== End Page Header Area Wrapper ==-->
+
+      <!--== Start Login Area Wrapper ==-->
+    <div class="mb-5 z-0">
+      <section class="vh-100 mb-5" style="background-color: #fff;">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+             <div > <!-- class="col-xl-9" -->
+      
+              <h1 class="text-black text-center mb-4">Profile</h1>
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body">
+      
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Full name</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="text" value="{{current.first_name}} {{current.last_name}}" class="form-control form-control-lg" name="full_name" />
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Email address</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="email" name="email" value="{{current.email}}" class="form-control form-control-lg" placeholder="{{current.email}}" />
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">About</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <textarea class="form-control" name="about" rows="3" placeholder="Tell us about yourself!"></textarea>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Gender</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                          value="Male" />
+                        <label class="form-check-label" for="maleGender">Male</label>
+                      </div>
+      
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                              value="Female" />
+                            <label class="form-check-label" for="femaleGender">Female</label>
+                          </div>
+        
+                          
+        
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="otherGender"
+                              value="Other" />
+                            <label class="form-check-label" for="otherGender">Other</label>
+                          </div>
+      
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3">
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Education <span style="color: red;"> *</span></h6>
+                      
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                        <div class="row">
+                            <div class="col-4">
+
+                                <select class="select form-control" name="edu_type_1">
+                                <option value="Qualification" disabled>Qualification</option>
+                                <option value="10th">10th</option>
+                                <option value="12th">12th</option>
+                                <option value="Graduation">Graduation</option>
+                                <option value="Masters">Masters</option>
+                                <option value="Post Graduation">Post Graduation</option>
+                                <option value="Diploma">Diploma</option>
+                                </select>
+            
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control form-control" name="edu_marks_1" value="{{detail.edu_marks_1}}" placeholder="Marks" />
+                            </div>
+                            <div class="col-4">
+
+                                <select class="select form-control" name="edu_percentage_1">
+                                <option value="Marks" disabled>Marks</option>
+                                <option value="Percentage">Percentage</option>
+                                <option value="CGPA">CGPA</option>
+                                <option value="GPA">GPA</option>
+                              
+                                </select>
+            
+                            </div>
+
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-8">
+
+                                <select class="select form-control" name="edu_branch_1">
+                                <option value="1" disabled>Branch</option>
+                                <option value="2">CBSE</option>
+                                <option value="3">State Board</option>
+                                <option value="4">Computer Science Engnerring</option>
+                                <option value="5">Computer Science Engnerring</option>
+                                <option value="6">Mechanical Engineer</option>
+                                <option value="7">Electronics and Communication Engineer</option>
+                                <option value="8">Electrical Engineer</option>
+                                <option value="9">Civil Engineerz</option>
+                                </select>
+            
+                            </div>
+                            <div class="col-4">
+                                <input type="month" min="1980" max="2022" step="1" class="form-control form-control" name="edu_year_1" value="{{detail.edu_year_1}}" placeholder="Passing Year" />
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-2">
+                            <div class="col-8">
+                                <input type="text" class="form-control form-control" name="edu_inst_1" value="{{detail.edu_inst_1}}" placeholder="Instution Name" />
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control form-control" name="edu_location_1" value="{{detail.edu_location_1}}" placeholder="Location" />
+                            </div>
+                        </div>
+
+                      <div class="row mt-2">
+                        <div class="col-md-12  mt-2">
+                          <textarea class="form-control" name="edu_about_1" rows="3" placeholder="Tell us about your learning and Experience!"></textarea>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div> 
+
+                  <hr class="mx-n3">
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3  ps-5">
+      
+                      <h6 class="mb-0">Education2 <span style="color: red;"> *</span></h6>
+                      
+      
+                    </div>
+                    <div class="col-md-9  pe-5">
+      
+                        <div class="row">
+                            <div class="col-4">
+
+                                <select class="select form-control" name="edu_type_2">
+                                <option value="1" disabled>Choose option</option>
+                                <option value="2">Graduation</option>
+                                <option value="3">Masters</option>
+                                <option value="3">Post Graduation</option>
+                                <option value="4">Diploma</option>
+                                </select>
+            
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="edu_marks_2" value="{{detail.edu_marks_2}}" class="form-control form-control" placeholder="Marks" />
+                            </div>
+                            <div class="col-4">
+
+                                <select class="select form-control" name="edu_percentage_2">
+                                <option value="1" disabled>Marks</option>
+                                <option value="2">Percentage</option>
+                                <option value="3">Masters</option>
+                                <option value="3">Post Graduation</option>
+                                <option value="4">Diploma</option>
+                                </select>
+            
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-8">
+
+                                <select class="select form-control" name="edu_branch_2">
+                                <option value="1" disabled>Branch</option>
+                                <option value="2">Computer Science Engnerring</option>
+                                <option value="3">Masters</option>
+                                <option value="3">Post Graduation</option>
+                                <option value="4">Diploma</option>
+                                </select>
+            
+                            </div>
+                            <div class="col-4">
+                                <input type="month" min="1980" max="2022" step="1" name="edu_year_2" value="{{detail.edu_year_2}}" class="form-control form-control" placeholder="Passing Year" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-8">
+                                <input type="text" class="form-control form-control" name="edu_inst_2" value="{{detail.edu_inst_2}}" placeholder="Instution Name" />
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control form-control" name="edu_location_2" value="{{detail.edu_location_2}}" placeholder="Location" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col-md-12  mt-2">
+                            <textarea class="form-control" name="edu_about_2" rows="3" placeholder="Tell us about your learning and Experience!"></textarea>
+                          </div>
+                        </div>
+  
+
+
+                    </div>
+                  </div> 
+
+                  
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Upload Profile Picture</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/*" name='user_img'/>
+                      <div class="small text-muted mt-2">Upload your Profile Picture Max file
+                        size 50 MB</div>
+      
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Upload CV</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input class="form-control form-control-lg" id="formFileLg" name="resume" type="file" />
+                      <div class="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
+                        size 50 MB</div>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="px-5 py-4">
+                      <button type="submit" class="btn btn-lg" style="background-color: #03a84e; color:#fff;">Update</button>
+                  </div>
+      
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+      <!--== End Login Area Wrapper ==-->
+
+      
+    </main>
+  </div>
+</body>
+{% endblock content %}

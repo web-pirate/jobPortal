@@ -1,3 +1,4 @@
+from turtle import title
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -15,6 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
+    title = "Job Portal"
     user_object = User.objects.all()
     verifed_user = reversed(Profile.objects.all())
     # try:
@@ -42,12 +44,13 @@ def home(request):
             if count == 3:
                 break
         # job_append.reverse()
-    return render(request, 'home.html', {'user_obj': user_object, "job_order": job_append})
+    return render(request, 'home.html', {'user_obj': user_object, "job_order": job_append, 'title': title})
     # else:
     #     return render(request, 'home.html', {'user_obj': user_object})
 
 
 def register(request):
+    title = "Register"
     if request.method == "POST":
         uname = request.POST.get('uname')
         fname = request.POST.get('fname')
@@ -80,10 +83,11 @@ def register(request):
             return redirect('register')
 
     else:
-        return render(request, 'register.html')
+        return render(request, 'register.html', {'title': title})
 
 
 def login(request):
+    title = "Login"
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -112,7 +116,7 @@ def login(request):
                                  "Please Register on Website.")
             return redirect('login')
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'title': title})
 
 
 def logout(request):
@@ -121,19 +125,23 @@ def logout(request):
 
 
 def about(request):
-    return render(request, 'about.html')
+    title = "About Us"
+    return render(request, 'about.html', {'title': title})
 
 
 def blog_content(request):
-    return render(request, 'blog_content.html')
+    title = 'Blog'
+    return render(request, 'blog_content.html', {'title': title})
 
 
 def email_verify(request):
-    return render(request, 'email_verify.html')
+    title = "Email Verification"
+    return render(request, 'email_verify.html', {'title': title})
 
 
 @csrf_exempt
 def contact(request):
+    title = "Contact Us"
     current_obj = request.user
     user_obj = User.objects.filter(username=current_obj).first()
     try:
@@ -155,7 +163,7 @@ def contact(request):
     except Exception as e:
         print(e)
     # models already made
-    return render(request, 'contact.html', {'user': user_obj})
+    return render(request, 'contact.html', {'user': user_obj, 'title': title})
 
 
 def token_send(request):
@@ -212,22 +220,24 @@ def send_email_after_registration(email, token):
 
 # @login_required(login_url="login")
 def company_profile(request):
+    title = "Company Profile"
     current_user = request.user
     if current_user:
         company_obj = Company_profile.objects.filter(user=current_user).first()
         pro_job = reversed(Job.objects.filter(jcname=company_obj).all())
-        return render(request, 'company_profile.html', {'company': company_obj, "job": pro_job})
+        return render(request, 'company_profile.html', {'company': company_obj, "job": pro_job, 'title': title})
     else:
-        return render(request, 'company_profile.html')
+        return render(request, 'company_profile.html', {'title': title})
 
 
 def company_registration(request):
+    title = "Company Registeration"
     user_obj = request.user
     company_profile_obj = Company_profile.objects.filter(user=user_obj).first()
     if company_profile_obj:
         messages.add_message(request, messages.INFO,
                              f"{user_obj}, your Company is already exist.")
-        return redirect('company_profile')
+        return redirect('company_profile', {'title': title})
     else:
         print(user_obj)
         if request.method == "POST":
@@ -244,14 +254,15 @@ def company_registration(request):
             company_profile_obj = Company_profile(
                 user=find_user, cname=cname, cimage=cimage, cemail=cemail, clocation=clocation, cphone=cphone, cdescription=cdescription)
             company_profile_obj.save()
-            return redirect('home')
+            return redirect('home', {'title': title})
         else:
             print("Registration failed")
-            return render(request, 'company_registration.html')
+            return render(request, 'company_registration.html', {'title': title})
 
 
 def company_view(request, cname):
     comp_obj = Company_profile.objects.filter(cname=cname).first()
+    title = cname
     ident = comp_obj.id
     job_obj = reversed(Job.objects.filter(jcname=ident).all())
     count = 0
@@ -262,7 +273,7 @@ def company_view(request, cname):
         count = count + 1
         if count == 3:
             break
-    return render(request, 'company_view.html', {"company": comp_obj, "job": job_app})
+    return render(request, 'company_view.html', {"company": comp_obj, "job": job_app, "title": title})
 
 
 # def job_view(request):
@@ -284,6 +295,7 @@ def company_view(request, cname):
 def edit_company(request, company_obj):
     user_obj = request.user
     company_obj = Company_profile.objects.filter(user=user_obj).first()
+    title = company_obj.cname
     if request.method == "POST" and company_obj:
         cname = request.POST.get('cname')
         cimage = request.POST.get('pro_img')
@@ -301,7 +313,7 @@ def edit_company(request, company_obj):
         company_profile_obj.save()
         return redirect('company_profile')
     else:
-        return render(request, 'edit_company.html', {'company': company_obj})
+        return render(request, 'edit_company.html', {'company': company_obj, 'title': title})
 
 
 # def job_details(company_obj):
@@ -309,12 +321,16 @@ def edit_company(request, company_obj):
 
 def user_list(request):
     user_obj = User.objects.all()
-    return render(request, 'user_list.html', {"user_obj": user_obj})
+    title = "User List"
+    return render(request, 'user_list.html', {"user_obj": user_obj, 'title': title})
 
 
 def user_view(request, pk):
     user_obj = User.objects.filter(username=pk).first()
-    return render(request, 'user_view.html', {"user_obj": user_obj})
+    title = user_obj.username
+    user_detail = UserDetails.objects.filter(username=user_obj).first()
+    print(user_detail.username)
+    return render(request, 'user_view.html', {"user_obj": user_obj, "userDetail": user_detail, 'title': title})
 
 
 def remove_job(request, job_id):
@@ -332,6 +348,7 @@ def remove_job(request, job_id):
 
 
 def jobs(request):
+    title = "Jobs"
     job_obj = reversed(Job.objects.all())
     count = 0
     job_ap = []
@@ -340,7 +357,7 @@ def jobs(request):
         count = count + 1
         if count > 12:
             break
-    return render(request, 'jobsall.html', {"job": job_ap})
+    return render(request, 'jobsall.html', {"job": job_ap, 'title': title})
 
 
 def job_create(request):
@@ -350,19 +367,78 @@ def job_create(request):
         print(current_user)
         user_obj = User.objects.filter(username=current_user).first()
         comp_obj = Company_profile.objects.filter(user=user_obj).first()
+        title = comp_obj
         print(comp_obj)
-        return render(request, 'job_create.html', {'company': comp_obj})
-    elif request.method == 'POST':
-        jposition = request.POST.get('jposition')
-        jlocation = request.POST.get('jlocation')
-        jdesc = request.POST.get('jdesc')
-        jsalary = request.POST.get('jsalary')
-        jtype = request.POST.get('jtype')
+        if request.method == 'POST':
+            jposition = request.POST.get('jposition')
+            jlocation = request.POST.get('jlocation')
+            jdesc = request.POST.get('jdesc')
+            jsalary = request.POST.get('jsalary')
+            jtype = request.POST.get('jtype')
 
-        job_create = Job(jcname=comp_obj, jposition=jposition, jlocation=jlocation, jdesc=jdesc,
-                         jsalary=jsalary, jtype=jtype)
-        job_create.save()
-        print(job_create)
-        return redirect('company_profile')
+            job_create = Job(jcname=comp_obj, jposition=jposition, jlocation=jlocation, jdesc=jdesc,
+                             jsalary=jsalary, jtype=jtype)
+            job_create.save()
+            print(job_create)
+            return redirect('company_profile')
+        else:
+            return render(request, 'job_create.html', {'company': comp_obj, 'title': title})
+
     else:
         return home(request)
+
+
+def user_details(request):
+    current = request.user.is_authenticated
+    if current:
+        current_user = request.user
+        print(current_user)
+        user_obj = User.objects.filter(username=current_user).first()
+        title = user_obj
+        if request.method == 'POST':
+            full_name = request.POST.get('full_name')
+            print(full_name)
+            email = request.POST.get('email')
+            about = request.POST.get('about')
+            gender = request.POST.get('gender')
+
+            edu_type_1 = request.POST.get('edu_type_1')
+            edu_marks_1 = request.POST.get('edu_marks_1')
+            edu_percentage_1 = request.POST.get('edu_percentage_1')
+            edu_branch_1 = request.POST.get('edu_branch_1')
+            edu_year_1 = request.POST.get('edu_year_1')
+            edu_inst_1 = request.POST.get('edu_inst_1')
+            print(edu_inst_1)
+            edu_location_1 = request.POST.get('edu_location_1')
+
+            edu_type_2 = request.POST.get('edu_type_2')
+            edu_marks_2 = request.POST.get('edu_marks_2')
+            edu_percentage_2 = request.POST.get('edu_percentage_2')
+            edu_branch_2 = request.POST.get('edu_branch_2')
+            edu_year_2 = request.POST.get('edu_year_2')
+            edu_inst_2 = request.POST.get('edu_inst_2')
+            edu_location_2 = request.POST.get('edu_location_2')
+
+            user_img = request.FILES['user_img']
+            resume = request.FILES['resume']
+            print(resume)
+
+            user_detail = UserDetails(username=user_obj, full_name=full_name, email=email, about=about, gender=gender, edu_type_1=edu_type_1,
+                                      edu_marks_1=edu_marks_1, edu_percentage_1=edu_percentage_1, edu_branch_1=edu_branch_1, edu_year_1=edu_year_1,
+                                      edu_inst_1=edu_inst_1, edu_location_1=edu_location_1, edu_type_2=edu_type_2, edu_marks_2=edu_marks_2, edu_percentage_2=edu_percentage_2,
+                                      edu_branch_2=edu_branch_2, edu_year_2=edu_year_2, edu_inst_2=edu_inst_2, edu_location_2=edu_location_2, resume=resume, user_img=user_img)
+            print(user_detail)
+            user_detail.save()
+            return render(request, "user_details.html", {'title': title})
+
+    else:
+        return render(request, "user_details.html", {'title': title})
+
+    detail_obj = UserDetails.objects.filter(username=user_obj).first()
+    # print(detail_obj.about)
+    return render(request, "user_details.html", {'current': request.user, 'title': title, 'detail': detail_obj})
+
+
+def user_update(request):
+    title = "User Update"
+    return render(request, 'user_details.html', {'title': title})
