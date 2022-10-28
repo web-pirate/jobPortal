@@ -1,7 +1,3 @@
-from pyexpat import model
-from random import choices
-from sre_constants import BRANCH
-from urllib import request
 from django.db import models
 from django.contrib.auth.models import User
 
