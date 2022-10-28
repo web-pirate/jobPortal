@@ -56,13 +56,11 @@
                   <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
       
-                      <h6 class="mb-0">Email address</h6>
+                      <h6 class="mb-0">Email address </h6>
       
                     </div>
                     <div class="col-md-9 pe-5">
-      
-                      <input type="email" name="email" value="{{current.email}}" class="form-control form-control-lg" placeholder="{{current.email}}" />
-      
+                      <h6 class="mb-0">{{current.email}} <span style="color:green;">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-square-check"></i></span></h6>
                     </div>
                   </div>
       
@@ -156,7 +154,7 @@
 
                         </div>
                         <div class="row mt-2">
-                            <div class="col-8">
+                            <div class="col-8 col-md-8 col-sm-12">
 
                                 <select class="select form-control" name="edu_branch_1">
                                 <option value="1" disabled>Branch</option>
@@ -171,7 +169,7 @@
                                 </select>
             
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 col-md-4 col-sm-12">
                                 <input type="month" min="1980" max="2022" step="1" class="form-control form-control" name="edu_year_1" value="{{detail.edu_year_1}}" placeholder="Passing Year" />
                             </div>
                         </div>

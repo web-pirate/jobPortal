@@ -389,8 +389,11 @@ def job_create(request):
 
 def user_details(request):
     current = request.user.is_authenticated
+    title = "User Details"
     if current:
         current_user = request.user
+        if UserDetails.objects.filter(username=request.user).first():
+            return redirect(user_update)
         print(current_user)
         user_obj = User.objects.filter(username=current_user).first()
         title = user_obj

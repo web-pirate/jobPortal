@@ -62,42 +62,24 @@ class UserDetails(models.Model):
         ('Female', 'Female'),
         ('Other', 'Other'),
     ]
-    EDUCATION_TYPE = [
-        ('10th', '10th'),
-        ('12th', '12th'),
-        ('Graduation', 'Graduation'),
-        ('Master', 'Master'),
-        ('Diploma', 'Diploma'),
-        ('Post-Graduation', 'Post-Graduation'),
-    ]
-    MARKS = [
-        ('Percentage', 'Percentage'),
-        ('CGPA', 'CGPA'),
-        ('GPA', 'GPA'),
-    ]
-    BRANCH = [
-        ('Computer Science Engineering', 'Computer Science Engineering'),
-        ('Mechanical Engineering', 'Mechanical Engineering'),
-        ('Civil Engineering', 'Civil Engineering'),
-        ('GPA', 'GPA'),
-    ]
+
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     about = models.CharField(max_length=500)
     gender = models.CharField(max_length=6, choices=GENDER)
-    edu_type_1 = models.CharField(max_length=25, choices=EDUCATION_TYPE)
+    edu_type_1 = models.CharField(max_length=50)
     edu_marks_1 = models.FloatField(max_length=4)
-    edu_percentage_1 = models.CharField(max_length=12, choices=MARKS)
-    edu_branch_1 = models.CharField(max_length=50, choices=BRANCH)
+    edu_percentage_1 = models.CharField(max_length=12)
+    edu_branch_1 = models.CharField(max_length=100)
     edu_year_1 = models.CharField(max_length=50)
     edu_inst_1 = models.CharField(max_length=100)
     edu_location_1 = models.CharField(max_length=100)
 
-    edu_type_2 = models.CharField(max_length=25, choices=EDUCATION_TYPE)
+    edu_type_2 = models.CharField(max_length=25)
     edu_marks_2 = models.FloatField(max_length=4)
-    edu_percentage_2 = models.CharField(max_length=12, choices=MARKS)
-    edu_branch_2 = models.CharField(max_length=50, choices=BRANCH)
+    edu_percentage_2 = models.CharField(max_length=12)
+    edu_branch_2 = models.CharField(max_length=100)
     edu_year_2 = models.CharField(max_length=50)
     edu_inst_2 = models.CharField(max_length=100)
     edu_location_2 = models.CharField(max_length=100)
