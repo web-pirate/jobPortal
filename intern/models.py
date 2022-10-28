@@ -65,7 +65,6 @@ class UserDetails(models.Model):
 
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
     about = models.CharField(max_length=500)
     gender = models.CharField(max_length=6, choices=GENDER)
     edu_type_1 = models.CharField(max_length=50)

@@ -36,7 +36,7 @@
           <div class="employers-details-info">
             <div class="thumb">
               <img
-                src="{% static 'uploaded_image/{{company.cimage}}' %}"
+                src="{{company.cimage.url}}"
                 width="130"
                 height="130"
                 alt="{{company.cname}}"
@@ -115,10 +115,10 @@
                     <div class="logo">
                       <a href="company-details.html"
                         ><img
-                          src="{% static 'img/companies/2.webp' %}"
+                          src="{{emp.jcname.cimage.url}}"
                           width="75"
                           height="75"
-                          alt="Image-HasTech"
+                          alt="{{emp.jcname}}"
                       /></a>
                     </div>
                     <div class="content">

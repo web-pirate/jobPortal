@@ -241,7 +241,7 @@ def company_registration(request):
         print(user_obj)
         if request.method == "POST":
             cname = request.POST.get('cname')
-            cimage = request.POST.get('pro_img')
+            cimage = request.FILES['pro_img']
             print(cimage)
             cemail = request.POST.get('cemail')
             cphone = request.POST.get('cphone')
@@ -297,7 +297,7 @@ def edit_company(request, company_obj):
     title = company_obj.cname
     if request.method == "POST" and company_obj:
         cname = request.POST.get('cname')
-        cimage = request.POST.get('pro_img')
+        cimage = request.FILES['pro_img']
         cemail = request.POST.get('cemail')
         cphone = request.POST.get('cphone')
         clocation = request.POST.get('clocation')
@@ -400,7 +400,6 @@ def user_details(request):
         if request.method == 'POST':
             full_name = request.POST.get('full_name')
             print(full_name)
-            email = request.POST.get('email')
             about = request.POST.get('about')
             gender = request.POST.get('gender')
 
@@ -425,7 +424,7 @@ def user_details(request):
             resume = request.FILES['resume']
             print(resume)
 
-            user_detail = UserDetails(username=user_obj, full_name=full_name, email=email, about=about, gender=gender, edu_type_1=edu_type_1,
+            user_detail = UserDetails(username=user_obj, full_name=full_name, about=about, gender=gender, edu_type_1=edu_type_1,
                                       edu_marks_1=edu_marks_1, edu_percentage_1=edu_percentage_1, edu_branch_1=edu_branch_1, edu_year_1=edu_year_1,
                                       edu_inst_1=edu_inst_1, edu_location_1=edu_location_1, edu_type_2=edu_type_2, edu_marks_2=edu_marks_2, edu_percentage_2=edu_percentage_2,
                                       edu_branch_2=edu_branch_2, edu_year_2=edu_year_2, edu_inst_2=edu_inst_2, edu_location_2=edu_location_2, resume=resume, user_img=user_img)
@@ -434,7 +433,7 @@ def user_details(request):
             return render(request, "user_details.html", {'title': title})
 
     else:
-        return render(request, "user_details.html", {'title': title})
+        return redirect(login)
 
     detail_obj = UserDetails.objects.filter(username=user_obj).first()
     # print(detail_obj.about)
@@ -443,4 +442,12 @@ def user_details(request):
 
 def user_update(request):
     title = "User Update"
-    return render(request, 'user_details.html', {'title': title})
+    current = request.user.is_authenticated
+    if current:
+        current_user = request.user
+        if UserDetails.objects.filter(username=request.user).first() is None:
+            return redirect(user_details)
+        detail_obj = UserDetails.objects.filter(username=current_user).first()
+        print(detail_obj.full_name)
+
+    return render(request, 'user_update.html', {'title': title, 'details': detail_obj})

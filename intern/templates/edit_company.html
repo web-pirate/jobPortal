@@ -81,7 +81,7 @@
                     >
 
                     <div class="image text-center mb-2" >
-                      <img src="{% static 'img/companies/1.webp' %}" id="company_profile_img" alt="company_profile" style="height:150px; width:auto"  />
+                      <img src="{{company.cimage.url}}" id="company_profile_img" alt="company_profile" style="height:150px; width:auto"  />
                     </div>
 
                     <script>
@@ -117,7 +117,7 @@
                                 placeholder="Upload"
                                 name='pro_img'
                                 accept=".png, .jpg, .jpeg"
-                                value="{{company.cimage}}"
+                                value="{{company.cimage.url}}"
                               />
                             </div>
                           </div>
