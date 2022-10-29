@@ -34,29 +34,35 @@
               <div class="team-details-info">
                 <div class="thumb">
                   <img
-                    src="{% static '/img/team/details1.webp' %}"
+                    src="{{details.user_img.url}}"
                     width="130"
                     height="130"
                     alt="Image-HasTech"
                   />
                 </div>
                 <div class="content">
-                  <h4 class="title">{{user_obj.first_name}}</h4>
+                  <h4 class="title">{{details.full_name}}</h4>
                   <h5 class="sub-title">Web Developer</h5>
                   <ul class="info-list">
                     <li>
-                      <i class="{% static 'icofont-location-pin' %}"></i> New
-                      York, USA
+                      <i class="{% static 'icofont-location-pin' %}"></i>
+                      {{details.address}}
                     </li>
-                    <li><i class="icofont-phone"></i> +88 456 796 457</li>
+                    <li><i class="icofont-phone"></i> {{details.phone}}</li>
                   </ul>
                 </div>
               </div>
               <div class="team-details-btn">
-                <button type="button" class="btn-theme btn-light">
-                  Short List
-                </button>
-                <button type="button" class="btn-theme">Download Resume</button>
+                <a href="{% url 'user_update' %}">
+                  <button type="button" class="btn-theme btn-light">
+                    Profile Update
+                  </button>
+                </a>
+                <a href="{{details.resume.url}}">
+                  <button type="button" class="btn-theme">
+                    Download Resume
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -66,16 +72,7 @@
             <div class="team-details-item">
               <div class="content">
                 <h4 class="title">About Candidate</h4>
-                <p class="desc">
-                  It is a long established fact that a reader will be distracted
-                  the readable content of page when looking atits layout. The
-                  point of using is that has more-or-less normal a distribution
-                  of letters, as opposed to usin content publishing packages web
-                  page editors. It is a long established fact that a reader will
-                  be distracts by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that has look
-                  like readable publishing packages and web page editors.
-                </p>
+                <p class="desc">{{details.about}}</p>
                 <p class="desc">
                   It is a long established fact that a reader will be distracted
                   the readable content of a page when looking atits layout. The
@@ -85,50 +82,29 @@
                 </p>
               </div>
               <div class="candidate-details-wrap">
-                <h4 class="content-title">Education</h4>
+                <h4 class="content-title">
+                  Education
+                  <span
+                    ><a href="{% url 'user_update' %}"
+                      ><i class="fa-solid fa-pen-to-square"></i></a
+                  ></span>
+                </h4>
                 <div class="candidate-details-content">
                   <div class="content-item">
                     <h4 class="title">
-                      {{userDetail.edu_type_1.capitalize}} <span>//</span>
-                      <span>{{userDetail.edu_year_1 }}</span>
+                      {{details.edu_type_1.capitalize}} <span>//</span>
+                      <span>{{details.edu_year_1 }}</span>
                     </h4>
-                    <h5 class="sub-title">
-                      {{userDetail.edu_inst_1.capitalize}}
-                    </h5>
-                    <p class="desc">
-                      It is a long established fact that a reader will be
-                      distracted the readable content of a page when looking
-                      atits layout the point of using is that has moreo less
-                      normal a distribution letters content publishing packages
-                      web page editors.
-                    </p>
+                    <h5 class="sub-title">{{details.edu_inst_1.capitalize}}</h5>
+                    <p class="desc">{{details.edu_about_1}}</p>
                   </div>
                   <div class="content-item">
                     <h4 class="title">
-                      Web Development <span>//</span> <span>2019 - 2020</span>
+                      {{details.edu_type_2.capitalize}} <span>//</span>
+                      <span>{{details.edu_year_2 }}</span>
                     </h4>
-                    <h5 class="sub-title">Franklin and Marshall College</h5>
-                    <p class="desc">
-                      It is a long established fact that a reader will be
-                      distracted the readable content of a page when looking
-                      atits layout the point of using is that has moreo less
-                      normal a distribution letters content publishing packages
-                      web page editors.
-                    </p>
-                  </div>
-                  <div class="content-item">
-                    <h4 class="title">
-                      Diploma In Fine Arts <span>//</span>
-                      <span>2020 - 2021</span>
-                    </h4>
-                    <h5 class="sub-title">Franklin and Marshall College</h5>
-                    <p class="desc">
-                      It is a long established fact that a reader will be
-                      distracted the readable content of a page when looking
-                      atits layout the point of using is that has moreo less
-                      normal a distribution letters content publishing packages
-                      web page editors.
-                    </p>
+                    <h5 class="sub-title">{{details.edu_inst_2.capitalize}}</h5>
+                    <p class="desc">{{details.edu_about_2}}</p>
                   </div>
                 </div>
               </div>
@@ -222,14 +198,14 @@
                       <tr>
                         <td class="table-name">Gender</td>
                         <td class="dotted">:</td>
-                        <td>{{userDetail.gender.capitalize}}</td>
+                        <td>{{details.gender.capitalize}}</td>
                       </tr>
                       <tr>
                         <td class="table-name">Qualification</td>
                         <td class="dotted">:</td>
                         <td>
-                          {{userDetail.edu_type_1.capitalize}},
-                          {{userDetail.edu_type_2.capitalize}}
+                          {{details.edu_type_1.capitalize}},
+                          {{details.edu_type_2.capitalize}}
                         </td>
                       </tr>
                       <tr>

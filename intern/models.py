@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -67,6 +68,9 @@ class UserDetails(models.Model):
     full_name = models.CharField(max_length=50)
     about = models.CharField(max_length=500)
     gender = models.CharField(max_length=6, choices=GENDER)
+    phone = models.IntegerField(default="0000000000")
+    address = models.CharField(max_length=500, default="my home")
+
     edu_type_1 = models.CharField(max_length=50)
     edu_marks_1 = models.FloatField(max_length=4)
     edu_percentage_1 = models.CharField(max_length=12)
@@ -74,6 +78,7 @@ class UserDetails(models.Model):
     edu_year_1 = models.CharField(max_length=50)
     edu_inst_1 = models.CharField(max_length=100)
     edu_location_1 = models.CharField(max_length=100)
+    edu_about_1 = models.CharField(max_length=100, default="my home")
 
     edu_type_2 = models.CharField(max_length=25)
     edu_marks_2 = models.FloatField(max_length=4)
@@ -82,6 +87,8 @@ class UserDetails(models.Model):
     edu_year_2 = models.CharField(max_length=50)
     edu_inst_2 = models.CharField(max_length=100)
     edu_location_2 = models.CharField(max_length=100)
+    edu_about_2 = models.CharField(max_length=100, default="my home")
+
 
     user_img = models.FileField(upload_to="userProfile")
     resume = models.FileField(upload_to="userResume")

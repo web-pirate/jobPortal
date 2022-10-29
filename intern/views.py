@@ -16,7 +16,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
     title = "Job Portal"
-    user_object = User.objects.all()
     verifed_user = reversed(Profile.objects.all())
     # try:
     #     if request.method == 'POST':
@@ -31,7 +30,7 @@ def home(request):
     # except Exception as e:
     #     print(e)
     #     return redirect('home')
-    print(user_object)
+    user_object = UserDetails.objects.all()
     job_order = reversed(Job.objects.all())
     if job_order is not None:
         count = 0
@@ -328,7 +327,7 @@ def user_view(request, pk):
     user_obj = User.objects.filter(username=pk).first()
     title = user_obj.username
     user_detail = UserDetails.objects.filter(username=user_obj).first()
-    print(user_detail.username)
+    # print(user_detail.username)
     return render(request, 'user_view.html', {"user_obj": user_obj, "userDetail": user_detail, 'title': title})
 
 
@@ -402,6 +401,8 @@ def user_details(request):
             print(full_name)
             about = request.POST.get('about')
             gender = request.POST.get('gender')
+            phone = request.POST.get('phone')
+            address = request.POST.get('address')
 
             edu_type_1 = request.POST.get('edu_type_1')
             edu_marks_1 = request.POST.get('edu_marks_1')
@@ -411,6 +412,7 @@ def user_details(request):
             edu_inst_1 = request.POST.get('edu_inst_1')
             print(edu_inst_1)
             edu_location_1 = request.POST.get('edu_location_1')
+            edu_about_1 = request.POST.get('edu_about_1')
 
             edu_type_2 = request.POST.get('edu_type_2')
             edu_marks_2 = request.POST.get('edu_marks_2')
@@ -419,18 +421,19 @@ def user_details(request):
             edu_year_2 = request.POST.get('edu_year_2')
             edu_inst_2 = request.POST.get('edu_inst_2')
             edu_location_2 = request.POST.get('edu_location_2')
+            edu_about_2 = request.POST.get('edu_about_2')
 
             user_img = request.FILES['user_img']
             resume = request.FILES['resume']
             print(resume)
 
-            user_detail = UserDetails(username=user_obj, full_name=full_name, about=about, gender=gender, edu_type_1=edu_type_1,
+            user_detail = UserDetails(username=user_obj, full_name=full_name, about=about, gender=gender, address=address, phone=phone, edu_type_1=edu_type_1,
                                       edu_marks_1=edu_marks_1, edu_percentage_1=edu_percentage_1, edu_branch_1=edu_branch_1, edu_year_1=edu_year_1,
-                                      edu_inst_1=edu_inst_1, edu_location_1=edu_location_1, edu_type_2=edu_type_2, edu_marks_2=edu_marks_2, edu_percentage_2=edu_percentage_2,
-                                      edu_branch_2=edu_branch_2, edu_year_2=edu_year_2, edu_inst_2=edu_inst_2, edu_location_2=edu_location_2, resume=resume, user_img=user_img)
+                                      edu_inst_1=edu_inst_1, edu_location_1=edu_location_1, edu_about_1=edu_about_1, edu_type_2=edu_type_2, edu_marks_2=edu_marks_2, edu_percentage_2=edu_percentage_2,
+                                      edu_branch_2=edu_branch_2, edu_year_2=edu_year_2, edu_inst_2=edu_inst_2, edu_location_2=edu_location_2, edu_about_2=edu_about_2, resume=resume, user_img=user_img)
             print(user_detail)
             user_detail.save()
-            return render(request, "user_details.html", {'title': title})
+            return render(request, "profile.html", {'title': title})
 
     else:
         return redirect(login)
@@ -451,3 +454,12 @@ def user_update(request):
         print(detail_obj.full_name)
 
     return render(request, 'user_update.html', {'title': title, 'details': detail_obj})
+
+
+def profile(request):
+    current = request.user.is_authenticated
+    if current:
+        # if UserDetails.objects.filter(username=request.user).first() is None:
+        #     return redirect(user_details)
+        detail_obj = UserDetails.objects.filter(username=request.user).first()
+    return render(request, 'profile.html', {'details': detail_obj})

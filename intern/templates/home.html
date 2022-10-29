@@ -596,7 +596,7 @@
                 <div class="thumb">
                   <a href="candidate-details.html">
                     <img
-                      src="{% static 'img/team/2.webp' %}"
+                      src="{{i.user_img.url}}"
                       width="160"
                       height="160"
                       alt="Image-HasTech"
@@ -605,7 +605,7 @@
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="candidate-details.html">{{i.first_name}}</a>
+                    <a href="candidate-details.html">{{i.full_name}}</a>
                   </h4>
                   <h5 class="sub-title">UI/UX Designer</h5>
                   <div class="rating-box">

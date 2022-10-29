@@ -35,6 +35,7 @@ urlpatterns = [
     path('user_view/<pk>', views.user_view, name='user_view'),
     path('user_details/', views.user_details, name='user_details'),
     path('user_update/', views.user_update, name='user_update'),
+    path('profile/', views.profile, name='profile'),
 
     # Job Associated Pages
     path('remove_job/<job_id>', views.remove_job, name='remove_job'),
