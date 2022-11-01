@@ -254,6 +254,7 @@
                         src="{{job.jcname.cimage.url}}"
                         width="75"
                         height="75"
+                        style="object-fit: cover !important;"
                         alt="{{job.jcname}}"
                     /></a>
                   </div>
@@ -261,7 +262,7 @@
                     <h4 class="name">
                       <a href="company-details.html">{{job.jcname|truncatechars:25 }}</a>
                     </h4>
-                    <p class="address">{{job.jlocation}}</p>
+                    <p class="address">{{job.jlocation|truncatechars:20}}</p>
                   </div>
                 </div>
                 <div class="main-content">
@@ -277,7 +278,7 @@
                   {% else %}
                   <h5 class="work-type" data-text-color="#ff7e00">{{job.jtype}}</h5>
                   {% endif %}
-                  <p class="desc">{{job.jdesc|truncatechars:65}}</p>
+                  <p class="desc">{{job.jdesc|truncatechars:30}}</p>
                 </div>
                 <div class="recent-job-info">
                   <div class="salary">
@@ -559,13 +560,7 @@
                     <a href="candidate-details.html">Vishal Singh</a>
                   </h4>
                   <h5 class="sub-title">Web Designer</h5>
-                  <div class="rating-box">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
+                  <hr class="mx-n3" />
                   <p class="desc">CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                   <a
                     class="btn-theme btn-white btn-sm"
@@ -608,12 +603,7 @@
                     <a href="candidate-details.html">{{i.full_name}}</a>
                   </h4>
                   <h5 class="sub-title">UI/UX Designer</h5>
-                  <div class="rating-box">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
+                  <hr class="mx-n3" />
                   <p class="desc">CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                   <a
                     class="btn-theme btn-white btn-sm"
@@ -656,7 +646,10 @@
                     <div class="swiper-slide">
                       <!--== Start Brand Logo Item ==-->
                       <div class="brand-logo-item">
-                        <p>Manish</p>
+                        <img
+                          src="{% static 'img/brand-logo/2' %}.webp"
+                          alt="Image-HasTech"
+                        />
                       </div>
                       <!--== End Brand Logo Item ==-->
                     </div>
@@ -725,10 +718,10 @@
                 <!--== Add Swiper Arrows ==-->
                 <div class="swiper-btn-wrap">
                   <div class="brand-swiper-btn-prev">
-                    <i class="icofont-long-arrow-left"></i>
+                    <i class="fa-solid fa-arrow-left"></i>
                   </div>
                   <div class="brand-swiper-btn-next">
-                    <i class="icofont-long-arrow-right"></i>
+                    <i class="fa-solid fa-arrow-right"></i>
                   </div>
                 </div>
               </div>

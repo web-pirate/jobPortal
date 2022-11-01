@@ -120,6 +120,15 @@
                           <li>
                             <a href="{% url 'user_update' %}"><span>Profile Updation</span></a>
                           </li>
+                          <li>
+                            <a href="{% url 'experience' %}"><span>Experience</span></a>
+                          </li>
+                          <li>
+                            <a href="{% url 'exp_update' request.user %}"><span>Experience Update</span></a>
+                          </li>
+                          <li>
+                            <a href="{% url 'apply_now' %}"><span>Apply Now</span></a>
+                          </li>
                           {% if user.is_authenticated %}
                           <li>
                             <a href="{% url 'user_view' user.username %}"

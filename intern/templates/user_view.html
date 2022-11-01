@@ -200,11 +200,6 @@
                         <td>Development</td>
                       </tr>
                       <tr>
-                        <td class="table-name">Offered Salary</td>
-                        <td class="dotted">:</td>
-                        <td>$5000 / Monthly</td>
-                      </tr>
-                      <tr>
                         <td class="table-name">Experience</td>
                         <td class="dotted">:</td>
                         <td>05 Years</td>
@@ -252,18 +247,14 @@
                   <h3 class="title">Contact Now</h3>
                 </div>
                 <div class="widget-contact-form">
-                  <form
-                    id="contact-form"
-                    action="https://whizthemes.com/mail-php/raju/arden/mail.php"
-                    method="POST"
-                  >
+                  <form id="contact-form" method="POST">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
                           <input
                             class="form-control"
                             type="text"
-                            name="con_name"
+                            name="uname"
                             placeholder="Name:"
                           />
                         </div>
@@ -273,8 +264,18 @@
                           <input
                             class="form-control"
                             type="email"
-                            name="con_email"
+                            name="uemail"
                             placeholder="Email:"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input
+                            class="form-control"
+                            type="text"
+                            name="subject"
+                            placeholder="Sybject:"
                           />
                         </div>
                       </div>
@@ -282,7 +283,7 @@
                         <div class="form-group">
                           <textarea
                             class="form-control"
-                            name="con_message"
+                            name="message"
                             placeholder="Message"
                           ></textarea>
                         </div>

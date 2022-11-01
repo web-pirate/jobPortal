@@ -10,7 +10,7 @@
           <div class="row">
             <div class="col-12">
               <div class="page-header-content">
-                <h2 class="title">{{current}}</h2>
+                <h2 class="title">{{request.user}}</h2>
                 <nav class="breadcrumb-area">
                   <ul class="breadcrumb justify-content-center">
                     <li><a href="index.html">Home</a></li>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="text" value="{{current.first_name}} {{current.last_name}}" class="form-control form-control-lg" name="full_name" />
+                      <input type="text" value="{{detail.full_name}}" class="form-control form-control-lg" name="full_name" required/>
       
                     </div>
                   </div>
@@ -65,6 +65,102 @@
                   </div>
       
                   <hr class="mx-n3">
+
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Phone Number</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="number" value="{{detail.phone}}" class="form-control form-control-lg" name="phone" required/>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Address</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="text" value="{{detail.address}}" class="form-control form-control-lg" name="address" required/>
+      
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3">
+
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Category</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <select class="select form-control" name="category" id="type">
+                        <option value="Qualification" disabled>Select Category</option>
+                        <option value="Web Developer">Web Developer</option>
+                        <option value="Web Designer">Web Designer</option>
+                        <option value="Android Developer">Android Developer</option>
+                        <option value="Digital Marketer">Digital Marketer</option>
+                        <option value="iOS Developer">iOS Developer</option>
+                        <option value="Full-Stack">Full-Stack</option>
+                        <option value="Graphic Designer">Graphic Designer</option>
+                        <option value="Content Writer">Content Writer</option>
+                        <option value="Marketing Manager">Marketing Manager</option>
+                        <option value="Marketing Analyst">Marketing Analyst</option>
+                        <option value="Marketing Consultant">Marketing Consultant</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Human Resource">Human Resource</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3">
+
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Language</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <select class="select form-control" name="language" id="type">
+                        <option value="Select Language" disabled>Select Language</option>
+                        <option value="English">English</option>
+                        <option value="English, Germany">English, Germany</option>
+                        <option value="nglish, French">English, French</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Hindi, English">Hindi, English</option>
+                        </select>
+      
+                    </div>
+                  </div>
+
+                  
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Date Of Birth</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="date" min="1965" max="2022" step="1" class="form-control form-control" name="dob" value="{{detail.dob}}" placeholder="Date Of Birth" />
+
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
       
                   <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
@@ -74,7 +170,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <textarea class="form-control" name="about" rows="3" placeholder="Tell us about yourself!"></textarea>
+                      <textarea class="form-control" name="about" rows="3" placeholder="Tell us about yourself!" required>{{detail.about}}</textarea>
       
                     </div>
                   </div>
@@ -91,7 +187,7 @@
 
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gender" id="maleGender"
-                          value="Male" />
+                          value="Male" required/>
                         <label class="form-check-label" for="maleGender">Male</label>
                       </div>
       
@@ -164,10 +260,9 @@
                                 <option value="CBSE">CBSE</option>
                                 <option value="State Board">State Board</option>
                                 <option value="Computer Science Engnerring">Computer Science Engnerring</option>
-                                <option value="5">Computer Science Engnerring</option>
-                                <option value="6">Mechanical Engineer</option>
-                                <option value="7">Electronics and Communication Engineer</option>
-                                <option value="8">Electrical Engineer</option>
+                                <option value="Mechanical Engineer">Mechanical Engineer</option>
+                                <option value="Electronics and Communication Engineer">Electronics and Communication Engineer</option>
+                                <option value="Electrical Engineer">Electrical Engineer</option>
                                 <option value="Civil Engineer">Civil Engineer</option>
                                 </select>
             
@@ -189,7 +284,7 @@
 
                       <div class="row mt-2">
                         <div class="col-md-12  mt-2">
-                          <textarea class="form-control" name="edu_about_1" rows="3" placeholder="Tell us about your learning and Experience!"></textarea>
+                          <textarea class="form-control" name="edu_about_1" rows="3" placeholder="Tell us about your learning and Experience!">{{detail.edu_about_1}}</textarea>
                         </div>
                       </div>
 
@@ -212,10 +307,10 @@
 
                                 <select class="select form-control" name="edu_type_2">
                                 <option value="1" disabled>Choose option</option>
-                                <option value="2">Graduation</option>
-                                <option value="3">Masters</option>
-                                <option value="3">Post Graduation</option>
-                                <option value="4">Diploma</option>
+                                <option value="Graduation">Graduation</option>
+                                <option value="Masters">Masters</option>
+                                <option value="Post Graduation">Post Graduation</option>
+                                <option value="Diploma">Diploma</option>
                                 </select>
             
                             </div>
@@ -225,11 +320,10 @@
                             <div class="col-4">
 
                                 <select class="select form-control" name="edu_percentage_2">
-                                <option value="1" disabled>Marks</option>
-                                <option value="2">Percentage</option>
-                                <option value="3">Masters</option>
-                                <option value="3">Post Graduation</option>
-                                <option value="4">Diploma</option>
+                                <option value="1" disabled>Choose option</option>
+                                <option value="Percentage">Percentage</option>
+                                <option value="CGPA3">CGPA</option>
+                                <option value="GPA">GPA</option>
                                 </select>
             
                             </div>
@@ -240,10 +334,10 @@
 
                                 <select class="select form-control" name="edu_branch_2">
                                 <option value="1" disabled>Branch</option>
-                                <option value="2">Computer Science Engnerring</option>
-                                <option value="3">Masters</option>
-                                <option value="3">Post Graduation</option>
-                                <option value="4">Diploma</option>
+                                <option value="Computer Science Engnerring">Computer Science Engnerring</option>
+                                <option value="Masters">Masters</option>
+                                <option value="Post Graduation">Post Graduation</option>
+                                <option value="Diploma">Diploma</option>
                                 </select>
             
                             </div>
@@ -262,7 +356,7 @@
                         </div>
                         <div class="row mt-2">
                           <div class="col-md-12  mt-2">
-                            <textarea class="form-control" name="edu_about_2" rows="3" placeholder="Tell us about your learning and Experience!"></textarea>
+                            <textarea class="form-control" name="edu_about_2" rows="3" placeholder="Tell us about your learning and Experience!">{{detail.edu_about_2}}</textarea>
                           </div>
                         </div>
   
@@ -309,7 +403,7 @@
                   <hr class="mx-n3">
       
                   <div class="px-5 py-4">
-                      <button type="submit" class="btn btn-lg" style="background-color: #03a84e; color:#fff;">Update</button>
+                      <button type="submit" class="btn btn-lg" style="background-color: #03a84e; color:#fff;">Save & Next</button>
                   </div>
       
                 </div>

@@ -1,0 +1,266 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<main class="main-content">
+  <!--== Start Page Header Area Wrapper ==-->
+  <div
+    class="page-header-area sec-overlay sec-overlay-black"
+    data-bg-img="{% static 'img/photos/bg2.webp' %}"
+  >
+    <div class="container pt--0 pb--0">
+      <div class="row">
+        <div class="col-12">
+          <div class="page-header-content">
+            <h2 class="title">{{current}}</h2>
+            <nav class="breadcrumb-area">
+              <ul class="breadcrumb justify-content-center">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-sep">//</li>
+                <li>Work & Experience</li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--== End Page Header Area Wrapper ==-->
+
+  <!--== Start Login Area Wrapper ==-->
+  <div class="mb-5 z-0">
+    <section class="vh-100 mb-5" style="background-color: #fff">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div>
+            <!-- class="col-xl-9" -->
+
+            <h1 class="text-black text-center mb-4">Work & Experience</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="card" style="border-radius: 15px">
+                <div class="card-body">
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">Experience</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <select
+                        class="select form-control"
+                        name="experience"
+                        id="type"
+                      >
+                        <option value="Experience" disabled>Experience</option>
+                        <option value="0 Years">0 Years</option>
+                        <option value="<1 Year"><1 Year</option>
+                        <option value="<2 Years"><2 Years</option>
+                        <option value="<5 Years"><5 Years</option>
+                        <option value="5-10 Years">5-10 Years</option>
+                        <option value="10+ Years">10+ Years</option>
+                        <option value="20+ Years">20+ Years</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">
+                        Experience <span style="color: red"> *</span>
+                      </h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <div class="row">
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control form-control"
+                            name="exp_position_1"
+                            value="{{detail.exp_inst_1}}"
+                            placeholder="Position"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mt-2">
+                        <div class="col-2 col-md-2 col-sm-12">
+                          <p class="small text-muted mt-2">From</p>
+                        </div>
+
+                        <div class="col-4 col-md-4 col-sm-12">
+                          <input
+                            type="month"
+                            min="1980"
+                            max="2022"
+                            step="1"
+                            class="form-control form-control"
+                            name="exp_from_1"
+                            value="{{detail.edu_year_1}}"
+                            placeholder="Passing Year"
+                          />
+                        </div>
+
+                        <div class="col-2 col-md-2 col-sm-12">
+                          <p class="small text-muted mt-2">To</p>
+                        </div>
+
+                        <div class="col-4 col-md-4 col-sm-12">
+                          <input
+                            type="month"
+                            min="1980"
+                            max="2022"
+                            step="1"
+                            class="form-control form-control"
+                            name="exp_to_1"
+                            value="{{detail.edu_year_1}}"
+                            placeholder="Passing Year"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mt-2">
+                        <div class="col-8">
+                          <input
+                            type="text"
+                            class="form-control form-control"
+                            name="exp_comp_1"
+                            value="{{detail.edu_inst_1}}"
+                            placeholder="Company Name"
+                          />
+                        </div>
+                        <div class="col-4">
+                          <input
+                            type="text"
+                            class="form-control form-control"
+                            name="exp_location_1"
+                            value="{{detail.edu_location_1}}"
+                            placeholder="Location"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mt-2">
+                        <div class="col-md-12 mt-2">
+                          <textarea
+                            class="form-control"
+                            name="exp_about_1"
+                            rows="3"
+                            placeholder="Tell us about your learning and Experience!"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">
+                        Experience 2 <span style="color: red"> *</span>
+                      </h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <div class="row">
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control form-control"
+                            name="exp_position_2"
+                            value="{{detail.edu_inst_1}}"
+                            placeholder="Position"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mt-2">
+                        <div class="col-2 col-md-2 col-sm-12">
+                          <p class="small text-muted mt-2">From</p>
+                        </div>
+
+                        <div class="col-4 col-md-4 col-sm-12">
+                          <input
+                            type="month"
+                            min="1980"
+                            max="2022"
+                            step="1"
+                            class="form-control form-control"
+                            name="exp_from_2"
+                            value="{{detail.edu_year_1}}"
+                            placeholder="Passing Year"
+                          />
+                        </div>
+
+                        <div class="col-2 col-md-2 col-sm-12">
+                          <p class="small text-muted mt-2">To</p>
+                        </div>
+
+                        <div class="col-4 col-md-4 col-sm-12">
+                          <input
+                            type="month"
+                            min="1980"
+                            max="2022"
+                            step="1"
+                            class="form-control form-control"
+                            name="exp_to_2"
+                            value="{{detail.edu_year_1}}"
+                            placeholder="Passing Year"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mt-2">
+                        <div class="col-8">
+                          <input
+                            type="text"
+                            class="form-control form-control"
+                            name="exp_comp_2"
+                            value="{{detail.edu_inst_1}}"
+                            placeholder="Company Name"
+                          />
+                        </div>
+                        <div class="col-4">
+                          <input
+                            type="text"
+                            class="form-control form-control"
+                            name="exp_location_2"
+                            value="{{detail.edu_location_1}}"
+                            placeholder="Location"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mt-2">
+                        <div class="col-md-12 mt-2">
+                          <textarea
+                            class="form-control"
+                            name="exp_about_2"
+                            rows="3"
+                            placeholder="Tell us about your learning and Experience!"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="px-5 py-4">
+                    <button
+                      type="submit"
+                      class="btn btn-lg"
+                      style="background-color: #03a84e; color: #fff"
+                    >
+                      Save & Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!--== End Login Area Wrapper ==-->
+</main>
+{% endblock content %}

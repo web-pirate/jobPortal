@@ -42,7 +42,7 @@
                 </div>
                 <div class="content">
                   <h4 class="title">{{details.full_name}}</h4>
-                  <h5 class="sub-title">Web Developer</h5>
+                  <h5 class="sub-title">{{details.category}}</h5>
                   <ul class="info-list">
                     <li>
                       <i class="{% static 'icofont-location-pin' %}"></i>
@@ -82,80 +82,66 @@
                 </p>
               </div>
               <div class="candidate-details-wrap">
-                <h4 class="content-title">
-                  Education
-                  <span
-                    ><a href="{% url 'user_update' %}"
-                      ><i class="fa-solid fa-pen-to-square"></i></a
-                  ></span>
-                </h4>
+                <h4 class="content-title">Education</h4>
                 <div class="candidate-details-content">
                   <div class="content-item">
                     <h4 class="title">
-                      {{details.edu_type_1.capitalize}} <span>//</span>
+                      {{details.edu_type_1.capitalize}} <span>//</span
+                      ><span> ({{details.edu_branch_1}})</span>
                       <span>{{details.edu_year_1 }}</span>
                     </h4>
-                    <h5 class="sub-title">{{details.edu_inst_1.capitalize}}</h5>
+                    <h5 class="sub-title">
+                      {{details.edu_inst_1}}, {{details.edu_location_1}}
+                    </h5>
                     <p class="desc">{{details.edu_about_1}}</p>
                   </div>
                   <div class="content-item">
                     <h4 class="title">
-                      {{details.edu_type_2.capitalize}} <span>//</span>
+                      {{details.edu_type_2.capitalize}} <span>//</span
+                      ><span> ({{details.edu_branch_2}})</span>
                       <span>{{details.edu_year_2 }}</span>
                     </h4>
-                    <h5 class="sub-title">{{details.edu_inst_2.capitalize}}</h5>
+                    <h5 class="sub-title">
+                      {{details.edu_inst_2}}, {{details.edu_location_2}}
+                    </h5>
                     <p class="desc">{{details.edu_about_2}}</p>
                   </div>
                 </div>
               </div>
               <div class="candidate-details-wrap">
                 <h4 class="content-title">
-                  Work & Experience
+                  Work & Experience ({{experience.experience}})
                   <span
-                    ><a href=""><i class="fa-solid fa-pen-to-square"></i></a
+                    ><a href="{% url 'exp_update' request.user %}"
+                      ><i class="fa-solid fa-pen-to-square"></i></a
                   ></span>
                 </h4>
                 <div class="candidate-details-content">
                   <div class="content-item">
                     <h4 class="title">
-                      Computer Operator <span>//</span> <span>2014 - 2016</span>
+                      {{experience.exp_position_1}}<span>//</span>
+                      <span
+                        >{{experience.exp_from_1}} -
+                        {{experience.exp_to_1}}</span
+                      >
                     </h4>
-                    <h5 class="sub-title">Sanguine Skincare Ltd.</h5>
-                    <p class="desc">
-                      It is a long established fact that a reader will be
-                      distracted the readable content of a page when looking
-                      atits layout the point of using is that has moreo less
-                      normal a distribution letters content publishing packages
-                      web page editors.
-                    </p>
+                    <h5 class="sub-title">
+                      {{experience.exp_comp_1}}, {{experience.exp_location_1}}
+                    </h5>
+                    <p class="desc">{{experience.exp_about_1}}</p>
                   </div>
                   <div class="content-item">
                     <h4 class="title">
-                      Uuser Interface Designer <span>//</span>
-                      <span>2017 - 2020</span>
+                      {{experience.exp_position_2}} <span>//</span>
+                      <span
+                        >{{experience.exp_from_2}} -
+                        {{experience.exp_to_2}}</span
+                      >
                     </h4>
-                    <h5 class="sub-title">Lambent Illumination Ltd.</h5>
-                    <p class="desc">
-                      It is a long established fact that a reader will be
-                      distracted the readable content of a page when looking
-                      atits layout the point of using is that has moreo less
-                      normal a distribution letters content publishing packages
-                      web page editors.
-                    </p>
-                  </div>
-                  <div class="content-item">
-                    <h4 class="title">
-                      Senior UI Designer <span>//</span>
-                      <span>2020 - Present</span>
-                    </h4>
-                    <h5 class="sub-title">Karibian IT Solution Ltd.</h5>
-                    <p class="desc">
-                      It is a long established fact that a reader will be
-                      distracted the readable content of a page when looking
-                      atits layout the point of using is that has moreo less
-                      normal a distribution letters content publishing packages
-                      web page editors.
-                    </p>
+                    <h5 class="sub-title">
+                      {{experience.exp_comp_1}}, {{experience.exp_location_2}}
+                    </h5>
+                    <p class="desc">{{experience.exp_about_2}}</p>
                   </div>
                 </div>
               </div>
@@ -173,27 +159,22 @@
                       <tr>
                         <td class="table-name">Category</td>
                         <td class="dotted">:</td>
-                        <td>Development</td>
-                      </tr>
-                      <tr>
-                        <td class="table-name">Offered Salary</td>
-                        <td class="dotted">:</td>
-                        <td>$5000 / Monthly</td>
+                        <td>{{details.category}}</td>
                       </tr>
                       <tr>
                         <td class="table-name">Experience</td>
                         <td class="dotted">:</td>
-                        <td>05 Years</td>
+                        <td>{{experience.experience}}</td>
                       </tr>
                       <tr>
                         <td class="table-name">Language</td>
                         <td class="dotted">:</td>
-                        <td>English, Germany</td>
+                        <td>{{details.language}}</td>
                       </tr>
                       <tr>
                         <td class="table-name">Age</td>
                         <td class="dotted">:</td>
-                        <td>27-30 Years</td>
+                        <td>{{age}}</td>
                       </tr>
                       <tr>
                         <td class="table-name">Gender</td>
@@ -208,73 +189,15 @@
                           {{details.edu_type_2.capitalize}}
                         </td>
                       </tr>
-                      <tr>
-                        <td class="table-name">Level</td>
-                        <td class="dotted">:</td>
-                        <td>Senior</td>
-                      </tr>
+                      {% comment %}
                       <tr>
                         <td class="table-name">Views</td>
                         <td class="dotted">:</td>
                         <td>8,567</td>
                       </tr>
+                      {% endcomment %}
                     </tbody>
                   </table>
-                </div>
-              </div>
-
-              <div class="widget-item widget-contact">
-                <div class="widget-title">
-                  <h3 class="title">Contact Now</h3>
-                </div>
-                <div class="widget-contact-form">
-                  <form
-                    id="contact-form"
-                    action="https://whizthemes.com/mail-php/raju/arden/mail.php"
-                    method="POST"
-                  >
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <input
-                            class="form-control"
-                            type="text"
-                            name="con_name"
-                            placeholder="Name:"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <input
-                            class="form-control"
-                            type="email"
-                            name="con_email"
-                            placeholder="Email:"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <textarea
-                            class="form-control"
-                            name="con_message"
-                            placeholder="Message"
-                          ></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group mb--0">
-                          <button class="btn-theme d-block w-100" type="submit">
-                            Send Message
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-
-                  <!--== Message Notification ==-->
-                  <div class="form-message"></div>
                 </div>
               </div>
             </div>

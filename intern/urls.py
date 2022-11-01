@@ -36,12 +36,17 @@ urlpatterns = [
     path('user_details/', views.user_details, name='user_details'),
     path('user_update/', views.user_update, name='user_update'),
     path('profile/', views.profile, name='profile'),
+    path('experience/', views.experience, name='experience'),
+    path('exp_update/<user_obj>', views.exp_update, name='exp_update'),
+    path('apply_now/', views.user_apply_now, name='apply_now'),
+
 
     # Job Associated Pages
     path('remove_job/<job_id>', views.remove_job, name='remove_job'),
     # path('job_view/', views.job_view, name='job_view'),
     path('jobs/', views.jobs, name='jobs'),
     path('job_create/', views.job_create, name='job_create'),
+    path('job_apply/', views.job_apply, name='job_apply'),
 
 
 

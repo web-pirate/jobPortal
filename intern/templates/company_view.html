@@ -113,7 +113,7 @@
                 <div class="recent-job-item recent-job-style2-item">
                   <div class="company-info">
                     <div class="logo">
-                      <a href="company-details.html"
+                      <a href="#"
                         ><img
                           src="{{emp.jcname.cimage.url}}"
                           width="75"
@@ -123,7 +123,7 @@
                     </div>
                     <div class="content">
                       <h4 class="name">
-                        <a href="company-details.html"
+                        <a href="#"
                           >{{emp.jcname|truncatechars:25}}</a
                         >
                       </h4>
@@ -132,7 +132,7 @@
                   </div>
                   <div class="main-content">
                     <h3 class="title">
-                      <a href="job-details.html"
+                      <a href="#"
                         >{{emp.jposition|truncatechars:25}}</a
                       >
                     </h3>
@@ -140,7 +140,7 @@
                       {{emp.jtype}}
                     </h5>
                     <p class="desc">
-                      CSS3, HTML5, Javascript, Bootstrap, Jquery
+                      {{emp.jdesc|truncatechars:32}}
                     </p>
                   </div>
                   <div class="recent-job-info">
@@ -163,9 +163,9 @@
                 <div class="recent-job-item recent-job-style2-item">
                   <div class="company-info">
                     <div class="logo">
-                      <a href="company-details.html"
+                      <a href="{% url 'contact' %}"
                         ><img
-                          src="{% static 'img/companies/3.webp' %}"
+                          src="{% static 'img/elogo.webp' %}"
                           width="75"
                           height="75"
                           alt="Image-HasTech"
@@ -173,26 +173,26 @@
                     </div>
                     <div class="content">
                       <h4 class="name">
-                        <a href="company-details.html">Cogent Data</a>
+                        <a href="{% url 'contact' %}">Termi</a>
                       </h4>
-                      <p class="address">New York, USA</p>
+                      <p class="address">Vijay Nagar, Indore</p>
                     </div>
                   </div>
                   <div class="main-content">
                     <h3 class="title">
-                      <a href="job-details.html">Graphic Designer</a>
+                      <a href="{% url 'contact' %}">Graphic Designer</a>
                     </h3>
                     <h5 class="work-type" data-text-color="#0054ff">Remote</h5>
                     <p class="desc">
-                      CSS3, HTML5, Javascript, Bootstrap, Jquery
+                      Contact us to know more..
                     </p>
                   </div>
                   <div class="recent-job-info">
                     <div class="salary">
-                      <h4>$5000</h4>
+                      <h4>$****</h4>
                       <p>/monthly</p>
                     </div>
-                    <a class="btn-theme btn-sm" href="job-details.html"
+                    <a class="btn-theme btn-sm" href="{% url 'contact' %}"
                       >Apply Now</a
                     >
                   </div>

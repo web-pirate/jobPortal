@@ -1,4 +1,6 @@
 from email.policy import default
+from sre_constants import CATEGORY
+from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -66,10 +68,13 @@ class UserDetails(models.Model):
 
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=50)
-    about = models.CharField(max_length=500)
+    about = models.CharField(max_length=1000)
     gender = models.CharField(max_length=6, choices=GENDER)
     phone = models.IntegerField(default="0000000000")
+    category = models.CharField(max_length=50, default="Web Developer")
+    language = models.CharField(max_length=60, default="English")
     address = models.CharField(max_length=500, default="my home")
+    dob = models.CharField(max_length=50, default="00/00/0000")
 
     edu_type_1 = models.CharField(max_length=50)
     edu_marks_1 = models.FloatField(max_length=4)
@@ -78,7 +83,7 @@ class UserDetails(models.Model):
     edu_year_1 = models.CharField(max_length=50)
     edu_inst_1 = models.CharField(max_length=100)
     edu_location_1 = models.CharField(max_length=100)
-    edu_about_1 = models.CharField(max_length=100, default="my home")
+    edu_about_1 = models.CharField(max_length=1000, default="my home")
 
     edu_type_2 = models.CharField(max_length=25)
     edu_marks_2 = models.FloatField(max_length=4)
@@ -87,8 +92,7 @@ class UserDetails(models.Model):
     edu_year_2 = models.CharField(max_length=50)
     edu_inst_2 = models.CharField(max_length=100)
     edu_location_2 = models.CharField(max_length=100)
-    edu_about_2 = models.CharField(max_length=100, default="my home")
-
+    edu_about_2 = models.CharField(max_length=1000, default="my home")
 
     user_img = models.FileField(upload_to="userProfile")
     resume = models.FileField(upload_to="userResume")
@@ -96,3 +100,34 @@ class UserDetails(models.Model):
 
 def __str__(self):
     return self.username
+
+
+class UserExperience(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    experience = models.CharField(max_length=10)
+
+    exp_position_1 = models.CharField(max_length=50)
+    exp_from_1 = models.CharField(max_length=50)
+    exp_to_1 = models.CharField(max_length=50)
+    exp_comp_1 = models.CharField(max_length=50)
+    exp_location_1 = models.CharField(max_length=50)
+    exp_about_1 = models.CharField(max_length=50)
+
+    exp_position_2 = models.CharField(max_length=50)
+    exp_from_2 = models.CharField(max_length=50, default="00/00/0000")
+    exp_to_2 = models.CharField(max_length=50)
+    exp_comp_2 = models.CharField(max_length=50)
+    exp_location_2 = models.CharField(max_length=50)
+    exp_about_2 = models.CharField(max_length=50)
+
+
+class UserApply(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    aname = models.CharField(max_length=50)
+
+    acategory = models.CharField(max_length=50)
+    aemail = models.CharField(max_length=50)
+    aphone = models.CharField(max_length=50)
+
+    ajob_name = models.CharField(max_length=50)
+    acomp_name = models.CharField(max_length=50)

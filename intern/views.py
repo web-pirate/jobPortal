@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -6,6 +7,8 @@ import uuid
 from django.conf import settings
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
+from datetime import date
+
 
 # # libraries for email with html_template
 
@@ -79,6 +82,11 @@ def register(request):
         except Exception as e:
             print("Daily Limit Excced")
             return redirect('register')
+
+        # Delete the user that are not verified
+    # allUser = User.objects.all()
+    # for a in allUser :
+    #     print(allUser.cre)
 
     else:
         return render(request, 'register.html', {'title': title})
@@ -199,6 +207,7 @@ def email_template(request, token):
 
 def send_email_after_registration(email, token):
     subject = "Your accounts need to be verified!!"
+    n1 = "\n"
     message = f'Hi click the link to verify your account https://jobwebportal.herokuapp.com/verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
@@ -303,6 +312,10 @@ def edit_company(request, company_obj):
         cdescription = request.POST.get('cdescription')
         created_at = company_obj.created_at
 
+        if len(cimage) > 0:
+            os.remove(company_obj.cimage.path)
+            print("Image Removed")
+
         user_obj = request.user
         find_user = User.objects.filter(username=user_obj).first()
         company_profile_obj = Company_profile(id=company_obj.id,
@@ -323,10 +336,24 @@ def user_list(request):
     return render(request, 'user_list.html', {"user_obj": user_obj, 'title': title})
 
 
+@csrf_exempt
 def user_view(request, pk):
     user_obj = User.objects.filter(username=pk).first()
     title = user_obj.username
     user_detail = UserDetails.objects.filter(username=user_obj).first()
+    if request.method == 'POST':
+        name = request.POST.get('uname')
+        email = request.POST.get('uemail')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        contact_obj = Contact(name=name, email=email,
+                              subject=subject, message=message)
+        contact_obj.save()
+        print('contant send')
+        messages.add_message(
+            request, messages.SUCCESS, "Your message is recieved successfull!!")
+        print("message")
     # print(user_detail.username)
     return render(request, 'user_view.html', {"user_obj": user_obj, "userDetail": user_detail, 'title': title})
 
@@ -391,8 +418,8 @@ def user_details(request):
     title = "User Details"
     if current:
         current_user = request.user
-        if UserDetails.objects.filter(username=request.user).first():
-            return redirect(user_update)
+        # if UserDetails.objects.filter(username=request.user).first():
+        #     return redirect(user_update)
         print(current_user)
         user_obj = User.objects.filter(username=current_user).first()
         title = user_obj
@@ -403,6 +430,9 @@ def user_details(request):
             gender = request.POST.get('gender')
             phone = request.POST.get('phone')
             address = request.POST.get('address')
+            category = request.POST.get('category')
+            language = request.POST.get('language')
+            dob = request.POST.get('dob')
 
             edu_type_1 = request.POST.get('edu_type_1')
             edu_marks_1 = request.POST.get('edu_marks_1')
@@ -427,13 +457,13 @@ def user_details(request):
             resume = request.FILES['resume']
             print(resume)
 
-            user_detail = UserDetails(username=user_obj, full_name=full_name, about=about, gender=gender, address=address, phone=phone, edu_type_1=edu_type_1,
+            user_detail = UserDetails(username=user_obj, full_name=full_name, about=about, gender=gender, address=address, phone=phone, category=category, language=language, dob=dob, edu_type_1=edu_type_1,
                                       edu_marks_1=edu_marks_1, edu_percentage_1=edu_percentage_1, edu_branch_1=edu_branch_1, edu_year_1=edu_year_1,
                                       edu_inst_1=edu_inst_1, edu_location_1=edu_location_1, edu_about_1=edu_about_1, edu_type_2=edu_type_2, edu_marks_2=edu_marks_2, edu_percentage_2=edu_percentage_2,
                                       edu_branch_2=edu_branch_2, edu_year_2=edu_year_2, edu_inst_2=edu_inst_2, edu_location_2=edu_location_2, edu_about_2=edu_about_2, resume=resume, user_img=user_img)
             print(user_detail)
             user_detail.save()
-            return render(request, "profile.html", {'title': title})
+            return redirect(experience)
 
     else:
         return redirect(login)
@@ -444,22 +474,159 @@ def user_details(request):
 
 
 def user_update(request):
-    title = "User Update"
     current = request.user.is_authenticated
+    title = "User Details"
     if current:
         current_user = request.user
-        if UserDetails.objects.filter(username=request.user).first() is None:
-            return redirect(user_details)
-        detail_obj = UserDetails.objects.filter(username=current_user).first()
-        print(detail_obj.full_name)
+        user_obj = User.objects.filter(username=current_user).first()
+        user_detail_obj = UserDetails.objects.filter(username=user_obj).first()
+        title = user_obj
+        if request.method == 'POST':
+            full_name = request.POST.get('full_name')
+            about = request.POST.get('about')
+            gender = request.POST.get('gender')
+            phone = request.POST.get('phone')
+            address = request.POST.get('address')
+            category = request.POST.get('category')
+            language = request.POST.get('language')
+            dob = request.POST.get('dob')
 
-    return render(request, 'user_update.html', {'title': title, 'details': detail_obj})
+            edu_type_1 = request.POST.get('edu_type_1')
+            edu_marks_1 = request.POST.get('edu_marks_1')
+            edu_percentage_1 = request.POST.get('edu_percentage_1')
+            edu_branch_1 = request.POST.get('edu_branch_1')
+            edu_year_1 = request.POST.get('edu_year_1')
+            edu_inst_1 = request.POST.get('edu_inst_1')
+            edu_location_1 = request.POST.get('edu_location_1')
+            edu_about_1 = request.POST.get('edu_about_1')
+
+            edu_type_2 = request.POST.get('edu_type_2')
+            edu_marks_2 = request.POST.get('edu_marks_2')
+            edu_percentage_2 = request.POST.get('edu_percentage_2')
+            edu_branch_2 = request.POST.get('edu_branch_2')
+            edu_year_2 = request.POST.get('edu_year_2')
+            edu_inst_2 = request.POST.get('edu_inst_2')
+            edu_location_2 = request.POST.get('edu_location_2')
+            edu_about_2 = request.POST.get('edu_about_2')
+
+            user_img = request.FILES['user_img']
+            if len(user_img) > 0:
+                os.remove(user_detail_obj.user_img.path)
+                print("Profile Image Removed")
+            resume = request.FILES['resume']
+            if len(user_img) > 0:
+                os.remove(user_detail_obj.resume.path)
+                print("Profile Resume Removed")
+
+            user_detail = UserDetails(id=user_detail_obj.id, username=user_obj, full_name=full_name, about=about, gender=gender, address=address, phone=phone, category=category, language=language, dob=dob, edu_type_1=edu_type_1,
+                                      edu_marks_1=edu_marks_1, edu_percentage_1=edu_percentage_1, edu_branch_1=edu_branch_1, edu_year_1=edu_year_1,
+                                      edu_inst_1=edu_inst_1, edu_location_1=edu_location_1, edu_about_1=edu_about_1, edu_type_2=edu_type_2, edu_marks_2=edu_marks_2, edu_percentage_2=edu_percentage_2,
+                                      edu_branch_2=edu_branch_2, edu_year_2=edu_year_2, edu_inst_2=edu_inst_2, edu_location_2=edu_location_2, edu_about_2=edu_about_2, resume=resume, user_img=user_img)
+            print(user_detail)
+            user_detail.save()
+
+            return redirect('profile')
+        else:
+            detail_obj = UserDetails.objects.filter(username=user_obj).first()
+            return render(request, 'user_update.html', {'current': request.user, 'title': title, 'detail': detail_obj})
 
 
 def profile(request):
+    title = (request.user)
     current = request.user.is_authenticated
     if current:
         # if UserDetails.objects.filter(username=request.user).first() is None:
         #     return redirect(user_details)
         detail_obj = UserDetails.objects.filter(username=request.user).first()
-    return render(request, 'profile.html', {'details': detail_obj})
+        today = date.today()
+        birth_year = detail_obj.dob.split("-")
+        age = today.year - int(birth_year[0])
+        exp_obj = UserExperience.objects.filter(user=request.user).first()
+    return render(request, 'profile.html', {'details': detail_obj, "experience": exp_obj, "title": title, "age": age})
+
+
+def experience(request):
+    current = request.user.is_authenticated
+    title = "User Experience"
+    if current:
+        if request.method == 'POST':
+            username = request.user
+            experience = request.POST.get('experience')
+            print(experience)
+
+            exp_position_1 = request.POST.get('exp_position_1')
+            exp_from_1 = request.POST.get('exp_from_1')
+            exp_to_1 = request.POST.get('exp_to_1')
+            exp_comp_1 = request.POST.get('exp_comp_1')
+            exp_location_1 = request.POST.get('exp_location_1')
+            exp_about_1 = request.POST.get('exp_about_1')
+            print(exp_about_1)
+
+            exp_position_2 = request.POST.get('exp_position_2')
+            exp_from_2 = request.POST.get('exp_from_2')
+            exp_to_2 = request.POST.get('exp_to_2')
+            exp_comp_2 = request.POST.get('exp_comp_2')
+            exp_location_2 = request.POST.get('exp_location_2')
+            exp_about_2 = request.POST.get('exp_about_2')
+            print(exp_about_1)
+
+            print(experience)
+
+            user_experience = UserExperience(user=username, experience=experience, exp_position_1=exp_position_1, exp_from_1=exp_from_1, exp_to_1=exp_to_1, exp_comp_1=exp_comp_1, exp_location_1=exp_location_1,
+                                             exp_about_1=exp_about_1, exp_position_2=exp_position_2, exp_from_2=exp_from_2, exp_to_2=exp_to_2, exp_comp_2=exp_comp_2, exp_location_2=exp_location_2, exp_about_2=exp_about_2)
+            print(user_experience)
+            user_experience.save()
+            return redirect(profile)
+
+    else:
+        return redirect(login)
+
+    return render(request, 'experience.html', {'title': title})
+
+
+def exp_update(request, user_obj):
+    current = request.user.is_authenticated
+    title = "User Experience Update"
+    if current:
+        if request.method == 'POST':
+            username = request.user
+            experience = request.POST.get('experience')
+            print(experience)
+
+            exp_position_1 = request.POST.get('exp_position_1')
+            exp_from_1 = request.POST.get('exp_from_1')
+            exp_to_1 = request.POST.get('exp_to_1')
+            exp_comp_1 = request.POST.get('exp_comp_1')
+            exp_location_1 = request.POST.get('exp_location_1')
+            exp_about_1 = request.POST.get('exp_about_1')
+            print(exp_about_1)
+
+            exp_position_2 = request.POST.get('exp_position_2')
+            exp_from_2 = request.POST.get('exp_from_2')
+            exp_to_2 = request.POST.get('exp_to_2')
+            exp_comp_2 = request.POST.get('exp_comp_2')
+            exp_location_2 = request.POST.get('exp_location_2')
+            exp_about_2 = request.POST.get('exp_about_2')
+            print(exp_about_1)
+
+            print(experience)
+            exp_obj = UserExperience.objects.filter(user=request.user).first()
+            user_experience = UserExperience(id=exp_obj.id, user=username, experience=experience, exp_position_1=exp_position_1, exp_from_1=exp_from_1, exp_to_1=exp_to_1, exp_comp_1=exp_comp_1, exp_location_1=exp_location_1,
+                                             exp_about_1=exp_about_1, exp_position_2=exp_position_2, exp_from_2=exp_from_2, exp_to_2=exp_to_2, exp_comp_2=exp_comp_2, exp_location_2=exp_location_2, exp_about_2=exp_about_2)
+            print(user_experience)
+            user_experience.save()
+            return redirect(profile)
+
+    else:
+        return redirect(login)
+
+    exp_obj = UserExperience.objects.filter(user=request.user).first()
+    return render(request, 'experience_update.html', {'title': title, 'exp': exp_obj})
+
+
+def user_apply_now(request):
+    return render(request, 'user_apply_now.html')
+
+
+def job_apply(request):
+    return render(request, 'job_apply.html')

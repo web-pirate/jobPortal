@@ -13,7 +13,7 @@
             <h2 class="title">Job</h2>
             <nav class="breadcrumb-area">
               <ul class="breadcrumb justify-content-center">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
                 <li class="breadcrumb-sep">//</li>
                 <li>Job</li>
               </ul>
@@ -35,33 +35,35 @@
           <div class="recent-job-item recent-job-style2-item">
             <div class="company-info">
               <div class="logo">
-                <a href="company-details.html"
+                <a href="{% url 'company_view' emp.jcname %}"
                   ><img
-                    src="{% static 'img/companies/1.webp' %}"
+                    src="{{emp.jcname.cimage.url}}"
                     width="75"
                     height="75"
-                    alt="Image-HasTech"
+                    alt="{{emp.jcname}}"
                 /></a>
               </div>
               <div class="content">
                 <h4 class="name">
-                  <a href="company-details.html">{{emp.jcname}}</a>
+                  <a href="{% url 'company_view' emp.jcname %}"
+                    >{{emp.jcname}}</a
+                  >
                 </h4>
-                <p class="address">{{emp.jlocation}}</p>
+                <p class="address">{{emp.jlocation|truncatechars:20}}</p>
               </div>
             </div>
             <div class="main-content">
               <h3 class="title">
-                <a href="job-details.html"
+                <a href="{% url 'company_view' emp.jcname %}"
                   >{{emp.jposition|truncatechars:25}}</a
                 >
               </h3>
-              <h5 class="work-type">Full-time</h5>
-              <p class="desc">CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
+              <h5 class="work-type">{{emp.jtype}}</h5>
+              <p class="desc">{{emp.jdesc|truncatechars:25}}</p>
             </div>
             <div class="recent-job-info">
               <div class="salary">
-                <h4>${{emp.jsalary}}</h4>
+                <h4>₹{{emp.jsalary}}</h4>
                 <p>/monthly</p>
               </div>
               <a
@@ -81,17 +83,17 @@
             <nav>
               <ul class="page-numbers d-inline-flex">
                 <li>
-                  <a class="page-number active" href="job.html">1</a>
+                  <a class="page-number active" href="#">1</a>
                 </li>
                 <li>
-                  <a class="page-number" href="job.html">2</a>
+                  <a class="page-number" href="{% url 'jobs' %}">2</a>
                 </li>
                 <li>
-                  <a class="page-number" href="job.html">3</a>
+                  <a class="page-number" href="{% url 'jobs' %}">3</a>
                 </li>
                 <li>
-                  <a class="page-number next" href="job.html">
-                    <i class="icofont-long-arrow-right"></i>
+                  <a class="page-number next" href="{% url 'jobs' %}">
+                    <i class="fa-solid fa-arrow-right"></i>
                   </a>
                 </li>
               </ul>
